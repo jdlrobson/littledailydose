@@ -4,16 +4,88 @@
         <title>A Little Daily Dose of Chinese</title>
         <meta name="viewport" content="width=device-width"/>
         <style>
-            #mc_embed_signup,
-            img { width: 100%; max-width: 500px; height: auto; }
+            @import url('https://fonts.googleapis.com/css?family=Noto+Sans+SC&subset=chinese-simplified');
             body {
-                background-repeat: repeat-x;
-                background-image: url(colors.png);
+                font-family: 'Noto Sans SC', sans-serif;
+                margin: 0;
+            }
+            h1 {
+                font-weight: bold;
+                margin: 0;
+                font-size: 1.5em;
+            }
+            * {
+                box-sizing: border-box;
+            }
+            .bookcover {
+                width: 540px;
+                height: auto;
+                display: block;
+            }
+            em,
+            strong {
+                display: block;
+            }
+            div {
+                font-size: 0.9em;
+            }
+            a {
+                color: white;
+            }
+            p {
+                margin: 0;
+                padding: 0 40px;
+                line-height: 2.1;
+                font-size: 0.8em;
+            }
+            p ~ p:before {
+                content: '';
+                display: block;
+                border-top: solid 1px white;
+                width: 50px;
+                margin: 20px auto;
+            }
+            article {
+                overflow: hidden;
                 margin: auto;
-                max-width: 800px; text-align: center; }
-            .for-screen-reader {
-                position: absolute;
-                top: -999999px;
+            }
+            form {
+                margin: 30px 0;
+            }
+            section {
+                background: #d30007;
+                color: white;
+                padding: 20px 20px 40px;
+                text-align: center;
+            }
+            @media all and ( min-width: 500px ) {
+                /* 3000 x 820 */
+                article {
+                    width: 100%;
+                    position: relative;
+                }
+                .bookcover {
+                    display: block;
+                    object-fit: cover;
+                    width: 100vw;
+                    height: 100vh;
+                }
+                p {
+                    line-height: 1.5;
+                    padding: 0;
+                }
+                section {
+                    position: absolute;
+                    top: 0;
+                    left: 68%;
+                    margin-right: 5%;
+                    bottom: 0;
+                    padding: 0 3%;
+                    display: flex;
+                    justify-content: center;
+                    flex-direction: column;
+                    text-align: center;
+                }
             }
         </style>
         <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -27,11 +99,20 @@
 
     </head>
     <body>
-        <h1 class="for-screen-reader">A little daily dose</h1>
-        <p class="for-screen-reader">A new way to learn Chinese, coming soon.</p>
-        <p class="for-screen-reader">Fund us on kickstarter</p>
-        <a href="https://www.kickstarter.com/projects/linzy/a-little-daily-dose">
-        <img src="dailydose.jpg" width="500" height="810" alt="a little daily dose, a conventional book with an unconventional way to learn chinese, coming soon at the end of november">
-        </a>
+        <article>
+            <img class="bookcover" src="Header_1.jpg" width="2100" alt="A Little Daily Dose" />
+            <section>
+                <h1>Pre-order Special</h1>
+                <strong>USD: $28.80</strong>
+                <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+                    <input type="hidden" name="cmd" value="_s-xclick">
+                    <input type="hidden" name="hosted_button_id" value="ADGZNJEJ9GN4C">
+                    <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+                    <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+                </form>
+                <p>We are in the midst of consolidating book orders and looking forward to getting them printed in March (books will be sent out in April/May)</p>
+                <p>Meanwhile, follow us on <a href="https://instagram.com/linzybearswings/">Instagram</a> or <a href="https://www.kickstarter.com/projects/linzy/a-little-daily-dose">Kickstarter</a> for more updates</p>
+            </section>
+        </article>
     </body>
 </html>
