@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>{{char}} ({{pinyin}}) - A Little Daily Dose of Chinese</title>
+        <meta name="viewport" content="initial-scale=1.0, user-scalable=yes, minimum-scale=0.25, maximum-scale=5.0, width=device-width"/>
+        <style type="text/css">
+        @import url('https://fonts.googleapis.com/css?family=Noto+Sans+SC&subset=chinese-simplified');
+        /* colors */
+        body { color: #5e554d; }
+        .entry__info,
+        h1, strong,
+        h2, h3 { color: #3d7b90; }
+        a { color: #279c9a; }
+
+        /* fonts*/
+        body { font-family: 'Noto Sans SC', sans-serif;
+        }
+        strong { font-weight: normal; }
+        a { text-decoration: none; font-weight: bold; }
+
+        /* headings */
+        h1, h2 {
+            margin: 8px 0;
+            font-weight: bold;
+        }
+        h2 {
+            border-top: solid 1px #3d7b90;
+            border-bottom: solid 1px #3d7b90;
+            font-size: 1.2em;
+            padding: 2px 0;
+        }
+        h3 {
+            text-decoration: underline;
+            text-transform: uppercase;
+            font-size: .9em;
+            font-weight: bold;
+            margin: 12px 0 6px;
+        }
+        /* entry */
+        .entry__info {
+            font-weight: bold;
+            font-size: 1.1em;
+        }
+        .entry__heading__note {
+            font-size: .7em;
+            color: #5e554d;
+        }
+        .entry__heading__note:after,
+        .entry__heading__note:before {
+            content: '–';
+            padding: 0 4px;
+        }
+        /* usage */
+        .entry__info__usage {
+            font-size: .9em;
+        }
+        .entry__info__usage:before {
+            content: '|';
+            display: inline-block;
+            padding: 0 6px;
+        }
+        .entry__info__difficulty { font-weight: normal; }
+        .entry__info__difficulty:after {
+            content: '++';
+            color: #bcb08e;
+        }
+        section {
+            line-height: 1.5;
+        }
+        .em--literal {
+            color: #a29173;
+        }
+        .em--literal:before {
+            content: '<';
+        }
+        .em--literal:after {
+            content: '>';
+        }
+        ul {
+            list-style: none;
+            margin: 8px 0;
+            padding: 0;
+        }
+        @media all and ( min-width: 720px ) {
+            body {
+                width: 500px; margin: 20px auto;
+            }
+        }
+        @media print {
+            html {
+                height: 100%;
+                display: flex;
+            }
+            body {
+                width: 120mm;
+                height: 170mm;
+                font-size: 8pt;
+                margin: auto;
+            }
+        }
+        </style>
+    </head>
+    <body>
+        <div class="entry__info">
+            <span class="refnum">{{ref}}</span><span class="entry__info__usage">Usage: <span class="entry__info__difficulty">{{difficulty}}</span></span>
+        </div>
+        <h1>
+            <span>{{char}}</span>
+            <span>{{pinyin}}</span>
+        </h1>
+        <h2>
+            {{english}}
+            <span class="entry__heading__note">reference: <span class="refnum"><a href="{{seeUrl}}">{{see}}</a></span></span>
+        </h2>
+        <section>
+            {{{content}}}
+        </section>
+        <h3>Personal note:</h3>
+        <section>
+           {{{personalNote}}}
+        </section>
+    </body>
+</html>

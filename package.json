@@ -1,0 +1,22 @@
+{
+  "name": "dailydose",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node generate-vocab.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jdlrobson/littledailydose.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jdlrobson/littledailydose/issues"
+  },
+  "homepage": "https://github.com/jdlrobson/littledailydose#readme",
+  "dependencies": {
+    "hogan.js": "^3.0.2"
+  }
+}
