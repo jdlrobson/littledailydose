@@ -7,6 +7,15 @@
         @import url('https://fonts.googleapis.com/css?family=Noto+Sans+SC&subset=chinese-simplified');
         /* colors */
         body { color: #5e554d; }
+        .entry__traditional_char {
+            color: #bca765;
+        }
+        .entry__traditional_char:before {
+            content: '(';
+        }
+        .entry__traditional_char:after {
+            content: ')';
+        }
         .entry__info,
         h1, strong,
         h2, h3 { color: #3d7b90; }
@@ -28,6 +37,11 @@
             border-bottom: solid 1px #3d7b90;
             font-size: 1.2em;
             padding: 2px 0;
+        }
+        section strong:first-child {
+            display: block;
+            font-style: italic;
+            margin-bottom: 8px;
         }
         h3 {
             text-decoration: underline;
@@ -109,6 +123,7 @@
         </div>
         <h1>
             <span>{{char}}</span>
+            {{#traditional}}<span class="entry__traditional_char">{{traditional}}</span> {{/traditional}}
             <span>{{pinyin}}</span>
         </h1>
         {{#definitions}}
@@ -119,9 +134,11 @@
             {{{text}}}
         </section>
         {{/definitions}}
+        {{#personalNote}}
         <h3>Personal note:</h3>
         <section>
            {{{personalNote}}}
         </section>
+        {{/personalNote}}
     </body>
 </html>
