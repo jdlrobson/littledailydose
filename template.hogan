@@ -36,6 +36,9 @@
             font-weight: bold;
             margin: 12px 0 6px;
         }
+        p {
+            margin: 0;
+        }
         /* entry */
         .entry__info {
             font-weight: bold;
@@ -67,13 +70,13 @@
         section {
             line-height: 1.5;
         }
-        .em--literal {
+        .definition em {
             color: #a29173;
         }
-        .em--literal:before {
+        .definition em:before {
             content: '<';
         }
-        .em--literal:after {
+        .definition em:after {
             content: '>';
         }
         ul {
@@ -108,13 +111,14 @@
             <span>{{char}}</span>
             <span>{{pinyin}}</span>
         </h1>
+        {{#definitions}}
         <h2>
-            {{english}}
-            <span class="entry__heading__note">reference: <span class="refnum"><a href="{{seeUrl}}">{{see}}</a></span></span>
+            {{heading}}
         </h2>
-        <section>
-            {{{content}}}
+        <section class="definition">
+            {{{text}}}
         </section>
+        {{/definitions}}
         <h3>Personal note:</h3>
         <section>
            {{{personalNote}}}
