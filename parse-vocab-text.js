@@ -52,7 +52,9 @@ function pushDefinition() {
     if ( def ) {
         const defBody = toMarkdown(def.text.join( '\n' ));
         def.text = beginsWithChineseChar(defBody) ? defBody : wrapFirstLine(defBody, '**');
-        newWord.definitions.push( def );
+        if ( def.text.trim().length > 0 ) {
+            newWord.definitions.push( def );
+        }
         def = null;
     }
 }
@@ -63,7 +65,7 @@ function fixKeyInWord(newWord) {
     });
     if ( key[0] ) {
         newWord.key = key[0].trim();
-        console.log(`${newWord.char} new key: ${newWord.key}`);
+        //console.log(`${newWord.char} new key: ${newWord.key}`);
     } else {
         console.warn( `Could not correct key for ${newWord.key}` );
     }
@@ -121,7 +123,9 @@ function shouldIgnoreLine(line) {
 function extractDefinitions( line ) {
     // look for definition start
     const match = /^[0-9]+\.\w*(.*)/.exec( line );
-    if ( !def || match ) {
+    if ( line.trim().length === 0 ) {
+        return;
+    } else if ( !def || match ) {
         pushDefinition();
         def = {
             heading: line,
@@ -169,7 +173,7 @@ function extract(filename) {
             parsingPersonalNote = false;
         } else if ( key ) {
             // Extract word and sound
-            if ( i === 1 ) {
+            if ( !newWord.char ) {
                 Object.assign( newWord, extractFromHeading( line ) );
             } else {
                 if ( line.toLowerCase().match( 'personal note:' ) ) {
