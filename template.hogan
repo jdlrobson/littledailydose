@@ -131,7 +131,7 @@
         </style>
     </head>
     <body>
-        <header><a href="/">table of contents</a></header>
+        <header><a href="/toc.html">table of contents</a></header>
         {{#ref}}
         <div class="entry__info">
             <span class="refnum">{{ref}}</span><span class="entry__info__usage">Usage: <span class="entry__info__difficulty">{{difficulty}}</span></span>
