@@ -167,21 +167,20 @@ function extract(filename) {
     pushWord();
     reset();
 }
-extract('Vocabs_123A.txt');
-for ( let i = 4; i < 13; i++) {
-    extract(`Vocabs_${i}.txt`);
-}
-console.log( words );
-Object.keys(words).sort((a,b) => parseFloat(a) < parseFloat(b) ? -1 : 1).forEach((w) => {
-    if ( !w.match(/^[0-9]+\.[0-9]+$/ ) ) {
-        throw 'problem with ' + w;
-    }
-})
 
-fs.writeFileSync('slug.json', JSON.stringify( words ), 'utf8' )
-//console.log(words['1.01']);
-// todo 3.19 has traditional chinese p
+function parse() {
+    extract('Vocabs_123A.txt');
+    for ( let i = 4; i < 13; i++) {
+        extract(`Vocabs_${i}.txt`);
+    }
+    Object.keys(words).sort((a,b) => parseFloat(a) < parseFloat(b) ? -1 : 1).forEach((w) => {
+        if ( !w.match(/^[0-9]+\.[0-9]+$/ ) ) {
+            throw 'problem with ' + w;
+        }
+    })
+    fs.writeFileSync('slug.json', JSON.stringify( words ), 'utf8' )
+}
 
 module.exports = { extractFromHeading, extractDefinitions, makeLists,
-    markReferenceLinks, boldFirstLine,
+    markReferenceLinks, boldFirstLine, parse,
     reset, toMarkdown };
