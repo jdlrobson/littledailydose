@@ -1,6 +1,4 @@
 const fs = require('fs');
-const filename = 'Vocabs_123A.txt';
-const file = fs.readFileSync(filename, 'UTF-16LE');
 const words = {};
 
 let newWord;
@@ -84,7 +82,8 @@ function extractFromHeading(line) {
 
 function shouldIgnoreLine(line) {
     // 3.18 口 Mouth-unit of ; 3.19 门 A form of ; 4.12 片 Piece of ;
-    if ( line.match(/^[0-9]+.*\;.*;.*;/) ) {
+    // 10.07 通 Contact-unit of ; 12.07 遍 Span of
+    if ( line.match(/^[0-9]+.*\;/) ) {
         return true;
     // 11.12	得 dé / de		050 (toc)
     } else if ( line.match(/^[0-9]+\.[0-9]+[\t ]*.*[0-9]+$/) ) {
@@ -114,45 +113,53 @@ function extractDefinitions( line ) {
     return def;
 }
 
-file.toString().split(/\r\n/).map(line=>line.trim()).forEach((line) => {
-    const matchNewWord = /^([0-9]+\.[0-9]+)/.exec( line );
-    if ( matchNewWord && !shouldIgnoreLine( line ) ) {
-        // Store the last found word as we've found a new one.
-        if ( newWord ) {
-            pushWord();
-        }
-        const parts = line.split( '|' );
-        key = parts[0].trim();
-        if ( parts.length && parts[1] ) {
-            newWord = {
-                key,
-                definitions: [],
-                usage: parts[1].match(/[\+]+/g)[0].length,
-                text: ''
-            };
-        }
-        i = 0;
-        note = '';
-        parsingPersonalNote = false;
-    } else if ( key ) {
-        // Extract word and sound
-        if ( i === 1 ) {
-            Object.assign( newWord, extractFromHeading( line ) );
-        } else {
-            if ( line.toLowerCase().match( 'personal note:' ) ) {
-                // start personal note
-                parsingPersonalNote = true;
-            } else if ( parsingPersonalNote ) {
-                note += line + '\n';
-            } else {
-                extractDefinitions( line );
+function read(filename) {
+    const file = fs.readFileSync(filename, 'UTF-16LE');
+    file.toString().split(/\r\n/).map(line=>line.trim()).forEach((line) => {
+        const matchNewWord = /^([0-9]+\.[0-9]+)/.exec( line );
+        if ( matchNewWord && !shouldIgnoreLine( line ) ) {
+            // Store the last found word as we've found a new one.
+            if ( newWord ) {
+                pushWord();
             }
+            const parts = line.split( '|' );
+            key = parts[0].trim();
+            if ( parts.length && parts[1] ) {
+                newWord = {
+                    key,
+                    definitions: [],
+                    usage: parts[1].match(/[\+]+/g)[0].length,
+                    text: ''
+                };
+            }
+            i = 0;
+            note = '';
+            parsingPersonalNote = false;
+        } else if ( key ) {
+            // Extract word and sound
+            if ( i === 1 ) {
+                Object.assign( newWord, extractFromHeading( line ) );
+            } else {
+                if ( line.toLowerCase().match( 'personal note:' ) ) {
+                    // start personal note
+                    parsingPersonalNote = true;
+                } else if ( parsingPersonalNote ) {
+                    note += line + '\n';
+                } else {
+                    extractDefinitions( line );
+                }
+            }
+        } else {
+            // (ignore)
         }
-    } else {
-        // (ignore)
-    }
-    i++;
-});
+        i++;
+    });
+    reset();
+}
+read('Vocabs_123A.txt');
+for ( let i = 4; i < 13; i++) {
+    read(`Vocabs_${i}.txt`);
+}
 //console.log( words );
 Object.keys(words).sort((a,b) => parseFloat(a) < parseFloat(b) ? -1 : 1).forEach((w) => {
     if ( !w.match(/^[0-9]+\.[0-9]+$/ ) ) {
