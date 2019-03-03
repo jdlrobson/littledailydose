@@ -24,17 +24,21 @@ const markdownToObj = (text) => {
             const m = line.match(/Usage: (.+)/);
             obj.difficulty = m[1].length;
         } else if ( i === 1 ) {
-            const m = line.match(/# (.*) (.*)/ );
-            if ( m ) {
+            const headingText = line.match(/# (.*)/ );
+            if ( headingText ) {
+                const m = headingText[1].split( ' ' );
                 if ( m[1].indexOf( '(' ) > -1) {
                     // traditional
-                    const m2 = m[1].match(/(.*) \((.*)\)/);
-                    obj.char = m2[1];
-                    obj.traditional = m2[2];
+                    obj.traditional = m[1].replace(/[\(\)]/g, '');
+                    obj.pinyin = m[2];
                 } else {
-                    obj.char = m[1];
+                    obj.pinyin = m[1];
                 }
-                obj.pinyin = m[2];
+                obj.char = m[0];
+                if ( m[3] ) {
+                    // e.g. 风 (風) fēng – Not to be confused with 凤 (fèng)
+                    obj.charReference = m.slice( 3 ).join( ' ' ).replace( /–/g, '').trim();
+                }
             }
         } else {
             const m = line.match(/\#+ (.*)/);
@@ -106,6 +110,7 @@ ${vocabEntry.note}`,
             template.render( {
                 source: vocabEntry.source,
                 ref,
+                charReference: vocabEntry.charReference,
                 definitions,
                 // requires formatting!
                 personalNote: marked(vocabEntry.note),
