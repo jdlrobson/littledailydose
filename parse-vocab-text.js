@@ -10,7 +10,6 @@ let parsingPersonalNote = false;
 
 function reset() {
     i = 0;
-    key = null;
     def = null;
 }
 
@@ -58,6 +57,9 @@ function pushDefinition() {
 function pushWord() {
     pushDefinition();
     newWord.note = toMarkdown(boldFirstLine(makeLists(note)));
+    if ( key !== newWord.key ) {
+        throw `Problem with key ${newWord.key} !== ${key}`;
+    }
     words[key] = newWord;
     reset();
 }
@@ -83,7 +85,9 @@ function extractFromHeading(line) {
 function shouldIgnoreLine(line) {
     // 3.18 口 Mouth-unit of ; 3.19 门 A form of ; 4.12 片 Piece of ;
     // 10.07 通 Contact-unit of ; 12.07 遍 Span of
-    if ( line.match(/^[0-9]+.*\;/) ) {
+    if ( !line.match(/\|/) ) {
+        return true;
+    } else if ( line.match(/^[0-9]+.*\;/) ) {
         return true;
     // 11.12	得 dé / de		050 (toc)
     } else if ( line.match(/^[0-9]+\.[0-9]+[\t ]*.*[0-9]+$/) ) {
@@ -113,9 +117,15 @@ function extractDefinitions( line ) {
     return def;
 }
 
-function read(filename) {
-    const file = fs.readFileSync(filename, 'UTF-16LE');
-    file.toString().split(/\r\n/).map(line=>line.trim()).forEach((line) => {
+function extract(filename) {
+    console.log(`Extracting from ${filename}`);
+    let file;
+    try {
+        file = fs.readFileSync(filename, 'UTF-16LE');
+    } catch ( e ) {
+        return;
+    }
+    file.toString().split(/[\r\n]/).map(line=>line.trim()).forEach((line) => {
         const matchNewWord = /^([0-9]+\.[0-9]+)/.exec( line );
         if ( matchNewWord && !shouldIgnoreLine( line ) ) {
             // Store the last found word as we've found a new one.
@@ -154,13 +164,14 @@ function read(filename) {
         }
         i++;
     });
+    pushWord();
     reset();
 }
-read('Vocabs_123A.txt');
+extract('Vocabs_123A.txt');
 for ( let i = 4; i < 13; i++) {
-    read(`Vocabs_${i}.txt`);
+    extract(`Vocabs_${i}.txt`);
 }
-//console.log( words );
+console.log( words );
 Object.keys(words).sort((a,b) => parseFloat(a) < parseFloat(b) ? -1 : 1).forEach((w) => {
     if ( !w.match(/^[0-9]+\.[0-9]+$/ ) ) {
         throw 'problem with ' + w;
@@ -168,7 +179,7 @@ Object.keys(words).sort((a,b) => parseFloat(a) < parseFloat(b) ? -1 : 1).forEach
 })
 
 fs.writeFileSync('slug.json', JSON.stringify( words ), 'utf8' )
-console.log(words['1.01']);
+//console.log(words['1.01']);
 // todo 3.19 has traditional chinese p
 
 module.exports = { extractFromHeading, extractDefinitions, makeLists,
