@@ -44,9 +44,11 @@ const markdownToObj = (text) => {
             const m = line.match(/\#+ (.*)/);
             const heading = m && m[1];
             if ( heading ) {
-                isParsingPersonalNote = line.toUpperCase().trim() === '### ';
+                isParsingPersonalNote = line.indexOf( '### ' ) > -1;
                 if ( !isParsingPersonalNote ) {
                     obj.definitions.push( { heading, text: '' } );
+                } else {
+                    personalNote += line + '\n';
                 }
             } else {
                 if ( isParsingPersonalNote ) {
