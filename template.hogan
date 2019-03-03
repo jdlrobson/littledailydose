@@ -10,6 +10,16 @@
         .entry__traditional_char {
             color: #bca765;
         }
+        .entry__reference {
+            font-size: 0.7em;
+            color: #5e554d;
+        }
+        .entry__reference:empty {
+            display: none;
+        }
+        .entry__reference:before {
+            content: '– ';
+        }
         .entry__traditional_char:before {
             content: '(';
         }
@@ -129,6 +139,7 @@
         {{#definitions}}
         <h2>
             {{heading}}
+            <span class="entry__reference">{{reference}}</span>
         </h2>
         <section class="definition">
             {{{text}}}

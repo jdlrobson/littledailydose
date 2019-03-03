@@ -76,6 +76,15 @@ Object.keys( references ).forEach( ref => {
         const char = vocabEntry.char;
         const traditional = vocabEntry.traditional;
         const pinyin = vocabEntry.pinyin;
+        const definitions = vocabEntry.definitions.map( ( { heading, text } ) => {
+            const headingRef = heading.split( /[一–]/ );
+            const reference = headingRef[1] && headingRef[1].replace(/-一/g, '').trim();
+            return {
+                heading: headingRef[0],
+                reference,
+                text: marked(text)
+            };
+        });
         fs.writeFile(
             `public/${ref.replace('.', '-')}.txt`,
             `Usage: ${usage}
@@ -93,12 +102,7 @@ ${vocabEntry.note}`,
             template.render( {
                 source: vocabEntry.source,
                 ref,
-                definitions: vocabEntry.definitions.map( ( { heading, text } ) => {
-                    return {
-                        heading,
-                        text: marked(text)
-                    }
-                }),
+                definitions,
                 // requires formatting!
                 personalNote: marked(vocabEntry.note),
                 char,
