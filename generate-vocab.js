@@ -40,7 +40,7 @@ const markdownToObj = (text) => {
             const m = line.match(/\#+ (.*)/);
             const heading = m && m[1];
             if ( heading ) {
-                isParsingPersonalNote = line.toUpperCase().trim() === '### PERSONAL NOTE';
+                isParsingPersonalNote = line.toUpperCase().trim() === '### ';
                 if ( !isParsingPersonalNote ) {
                     obj.definitions.push( { heading, text: '' } );
                 }
@@ -96,7 +96,6 @@ Object.keys( references ).forEach( ref => {
 # ${char}${traditional ? ` (${traditional})` : ''} ${pinyin}
 ${vocabEntry.definitions.map(defToMarkdown).join('\n')}
 
-### PERSONAL NOTE
 ${vocabEntry.note}`,
             {
                 encoding: 'utf8'
@@ -124,6 +123,17 @@ ${vocabEntry.note}`,
                     console.log(`error writing ${ref}`, err )
                 }
             }
+        );
+        fs.writeFile(
+            `public/index.html`,
+            template.render( {
+                char: 'Table of contents',
+                definitions: [],
+                personalNote: marked(
+                    Object.keys(references).sort((a,b) => parseFloat(a) < parseFloat(b) ? -1 : 1).map((key) =>
+                        `* [${key} ${references[key]}](${key.replace('.', '-')}.html)` ).join('\n')
+                    )
+            }), {}
         );
     } else {
         console.log( 'could not locate', ref );
