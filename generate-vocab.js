@@ -125,7 +125,7 @@ ${vocabEntry.note}`,
             }
         );
         fs.writeFile(
-            `public/index.html`,
+            `public/toc.html`,
             template.render( {
                 char: 'Table of contents',
                 definitions: [],
