@@ -131,13 +131,16 @@
         </style>
     </head>
     <body>
+        <header><a href="/">table of contents</a></header>
+        {{#ref}}
         <div class="entry__info">
             <span class="refnum">{{ref}}</span><span class="entry__info__usage">Usage: <span class="entry__info__difficulty">{{difficulty}}</span></span>
         </div>
+        {{/ref}}
         <h1>
             <span>{{char}}</span>
             {{#traditional}}<span class="entry__traditional_char">{{traditional}}</span> {{/traditional}}
-            <span>{{pinyin}}</span>
+            {{#pinyin}}<span>{{pinyin}}</span>{{/pinyin}}
         </h1>
         {{#definitions}}
         <h2>
@@ -149,7 +152,6 @@
         </section>
         {{/definitions}}
         {{#personalNote}}
-        <h3>Personal note:</h3>
         <section>
            {{{personalNote}}}
         </section>
