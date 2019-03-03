@@ -191,7 +191,7 @@ function extract(filename) {
             if ( !newWord.char ) {
                 Object.assign( newWord, extractFromHeading( line ) );
             } else {
-                if ( line.toLowerCase().match( /(good-to-know information|good-to-know phrases|similar sounding\/looking|compounds formed with other|personal note:|useful term|similar characters:|names to note:)/ ) ) {
+                if ( line.toLowerCase().match( /(good-to-know |similar sounding\/looking|compounds formed with other|personal note:|useful term|similar characters:|names to note:)/ ) ) {
                     // start personal note
                     parsingPersonalNote = true;
                     note += '\n\n### ' + line + '\n';
