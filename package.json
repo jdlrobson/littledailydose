@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "test": "mocha 'script/test_parse-vocab-text.js'",
     "start": "node generate-vocab.js"
   },
   "repository": {

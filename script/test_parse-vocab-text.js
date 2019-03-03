@@ -1,6 +1,6 @@
 const { extractFromHeading, makeLists, markReferenceLinks,
     boldFirstLine,
-    toMarkdown, reset, extractDefinitions } = require( './index' );
+    toMarkdown, reset, extractDefinitions } = require( '../parse-vocab-text' );
 const assert = require( 'assert' );
 
 
