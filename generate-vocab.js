@@ -1,5 +1,6 @@
 const hogan = require( 'hogan.js' );
 const fs = require( 'fs' );
+const { markReferenceLinks } = require( './parse-vocab-text' );
 const template = hogan.compile(
     fs.readFileSync( 'template.hogan' ).toString()
 );
@@ -78,7 +79,11 @@ Object.keys( references ).forEach( ref => {
         const pinyin = vocabEntry.pinyin;
         const definitions = vocabEntry.definitions.map( ( { heading, text } ) => {
             const headingRef = heading.split( /[一–]/ );
-            const reference = headingRef[1] && headingRef[1].replace(/-一/g, '').trim();
+            const reference = headingRef[1] && marked(
+                markReferenceLinks(
+                    headingRef[1].replace(/-一/g, '').trim()
+                )
+            ).replace('<p>','').replace('</p>', ''); // hack
             return {
                 heading: headingRef[0],
                 reference,

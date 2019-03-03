@@ -29,7 +29,10 @@
         .entry__info,
         h1, strong,
         h2, h3 { color: #3d7b90; }
-        a { color: #279c9a; }
+        a {
+            font-style: normal;
+            color: #279c9a;
+        }
 
         /* fonts*/
         body { font-family: 'Noto Sans SC', sans-serif;
@@ -139,7 +142,7 @@
         {{#definitions}}
         <h2>
             {{heading}}
-            <span class="entry__reference">{{reference}}</span>
+            <span class="entry__reference">{{{reference}}}</span>
         </h2>
         <section class="definition">
             {{{text}}}

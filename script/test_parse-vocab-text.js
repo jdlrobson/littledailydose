@@ -91,5 +91,11 @@ describe( 'markReferenceLinks', () => {
             'often with Classifiers, reference: [3.08 个](3-08.html)'
         );
     });
+    it('marks references', function () {
+        assert.strictEqual(
+            markReferenceLinks('reference: 3.08 hello'),
+            'reference: [3.08](3-08.html) hello'
+        );
+    });
 });
 

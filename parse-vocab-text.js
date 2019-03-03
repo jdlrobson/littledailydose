@@ -25,7 +25,8 @@ function boldFirstLine(text) {
 }
 
 function markReferenceLinks(text) {
-    return text.replace(/([0-9])+\.([0-9]+) ([\u4E00-\u9FCC]+)/g, '[$1.$2 $3]($1-$2.html)');
+    return text.replace(/([0-9])+\.([0-9]+) ([\u4E00-\u9FCC]+)/g, '[$1.$2 $3]($1-$2.html)')
+        .replace( /([^\[])([0-9])+\.([0-9]+)/g, '$1[$2.$3]($2-$3.html)' );
 }
 
 function makeLists(text) {
