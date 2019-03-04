@@ -69,6 +69,17 @@
         p {
             margin: 0;
         }
+        th {
+            text-align: left;
+        }
+        th,
+        td {
+           padding: 0 20px;
+        }
+        th:first-child,
+        td:first-child {
+            padding: 0;
+        }
         /* entry */
         .entry__info {
             font-weight: bold;
