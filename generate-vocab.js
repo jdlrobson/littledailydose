@@ -7,9 +7,6 @@ const template = hogan.compile(
 const slug = JSON.parse( fs.readFileSync( 'slug.json' ) );
 const marked = require('marked');
 
-const difficulty = {
-    '2.01': 3
-};
 const references = vocabIndex;
 
 const markdownToObj = (text) => {
@@ -79,7 +76,7 @@ ${text}`;
 Object.keys( references ).forEach( ref => {
     const vocabEntry = getMarkdown( ref );
     if ( vocabEntry ) {
-        const usage = Array.from(Array(difficulty[ref]).keys()).fill('+').join('');
+        const usage = Array.from(Array(vocabEntry.difficulty).keys()).fill('+').join('');
         const char = vocabEntry.char;
         const traditional = vocabEntry.traditional;
         const pinyin = vocabEntry.pinyin;
