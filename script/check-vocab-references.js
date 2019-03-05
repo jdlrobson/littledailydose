@@ -1,5 +1,6 @@
 const fs = require( 'fs' );
 const { vocabIndex } = require( './../parse-vocab-text' );
+const dict = vocabIndex;
 function test( filename ) {
   console.log(`checking ${filename}`);
   const file = fs.readFileSync(filename, 'UTF-16LE'); // => <data>
@@ -25,9 +26,11 @@ function test( filename ) {
           charTokens.forEach((c, i) => {
               c = c.trim();
               var ref = tokens[i];
-              if ( c && ref && ref !== '' ) {
+              if ( c && ref && ref.trim() !== '' ) {
+                  ref = ref.trim();
+                  c = c.trim();
                   if ( !dict[ref] ) {
-                      console.log('saving', ref, c );
+                      console.log(`saving "${ref}" = "${c}"` );
                       dict[ref] = c;
                   } else {
                       if ( dict[ref] !== c ) {
