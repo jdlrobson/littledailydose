@@ -1,6 +1,6 @@
 const hogan = require( 'hogan.js' );
 const fs = require( 'fs' );
-const { markReferenceLinks, vocabIndex } = require( './parse-vocab-text' );
+const { markReferenceLinks, vocabIndex, lookupKey } = require( './parse-vocab-text' );
 const template = hogan.compile(
     fs.readFileSync( 'template.hogan' ).toString()
 );
@@ -73,6 +73,19 @@ const defToMarkdown = ( { heading, text } ) =>
     `## ${heading}
 ${text}`;
 
+function checkBrokenLinks( headingRef, text ) {
+    const re = /\[([0-9]+\.[0-9]+) ([^\]]+)]\([0-9]*-[0-9]*\.html\)/g;
+    let match;
+    while ( match = re.exec(text) ) {
+        const ref = match[1];
+        const char = match[2];
+        const validChar = vocabIndex[ref];
+        if ( validChar !== char ) {
+            console.warn( `\t\t\t Possible invalid link in ${headingRef} (${match[0]}). Should be ${lookupKey(char)}` );
+        }
+    }
+}
+
 Object.keys( references ).forEach( ref => {
     const vocabEntry = getMarkdown( ref );
     if ( vocabEntry ) {
@@ -87,12 +100,14 @@ Object.keys( references ).forEach( ref => {
                     headingRef[1].replace(/-一/g, '').trim()
                 )
             ).replace('<p>','').replace('</p>', ''); // hack
+            checkBrokenLinks(ref, text);
             return {
                 heading: headingRef[0],
                 reference,
                 text: marked(text)
             };
         });
+        checkBrokenLinks(vocabEntry.note);
         fs.writeFile(
             `public/${ref.replace('.', '-')}.txt`,
             `Usage: ${usage}
