@@ -84,6 +84,18 @@ function checkBrokenLinks( headingRef, text ) {
             console.warn( `\t\t\t Possible invalid link in ${headingRef} (${match[0]}). Should be ${lookupKey(char)}` );
         }
     }
+    const reNoCharacter = /\[([0-9]+\.[0-9]+)\]\(/g
+    while ( match = reNoCharacter.exec(text) ) {
+        const ref = match[1];
+        const char = vocabIndex[ref];
+        console.warn( `\t\t\t link found in ${headingRef} without character. [${match[1]}] should be [${match[1]} ${char}]` );
+    }
+    const reLinkNotLabel = /\[([0-9]+)\.([0-9]+) [^\]]*\]\(([0-9]+)\-([0-9]+)\.html\)/g
+    while ( match = reLinkNotLabel.exec(text) ) {
+        if ( match[1] !== match[3] || match[2] !== match[4] ) {
+            console.warn( `\t\t\t Found link that doesn't match label in ${headingRef}: ${match[0]}` );
+        }
+    }
 }
 
 Object.keys( references ).forEach( ref => {
