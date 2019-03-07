@@ -124,6 +124,7 @@ ${vocabEntry.note}`,
             template.render( {
                 source: vocabEntry.source,
                 ref,
+                strokes: parseInt( ref.split( '.' )[0], 10 ),
                 charReference: vocabEntry.charReference,
                 definitions,
                 // requires formatting!
