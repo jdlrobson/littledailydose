@@ -89,11 +89,13 @@ function checkBrokenLinks( headingRef, text ) {
         const ref = match[1];
         const char = vocabIndex[ref];
         console.warn( `\t\t\t link found in ${headingRef} without character. [${match[1]}] should be [${match[1]} ${char}]` );
+        throw new Error();
     }
     const reLinkNotLabel = /\[([0-9]+)\.([0-9]+) [^\]]*\]\(([0-9]+)\-([0-9]+)\.html\)/g
     while ( match = reLinkNotLabel.exec(text) ) {
         if ( match[1] !== match[3] || match[2] !== match[4] ) {
             console.warn( `\t\t\t Found link that doesn't match label in ${headingRef}: ${match[0]}` );
+            throw new Error();
         }
     }
 }
