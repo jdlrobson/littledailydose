@@ -124,6 +124,19 @@
             font-size: 1.2em;
             padding: 2px 0;
         }
+        .body--stroke-1 h2 { border-color: #3b4b4e; }
+        .body--stroke-2 h2 { border-color: #3c6f67; }
+        .body--stroke-3 h2 { border-color: #00916d; }
+        .body--stroke-4 h2 { border-color: #00b264; }
+        .body--stroke-5 h2 { border-color: #2a863d; }
+        .body--stroke-6 h2 { border-color: #45b734; }
+        .body--stroke-7 h2 { border-color: #f29500; }
+        .body--stroke-8 h2 { border-color: #ea4a00; }
+        .body--stroke-9 h2 { border-color: #dd1f29; }
+        .body--stroke-10 h2 { border-color: #e92d45; }
+        .body--stroke-11 h2 { border-color: #bc214b; }
+        .body--stroke-12 h2 { border-color: #752849; }
+
         section strong:first-child {
             display: block;
             font-style: italic;
