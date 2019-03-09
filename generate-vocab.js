@@ -78,7 +78,7 @@ function checkBrokenLinks( headingRef, text ) {
     let match;
     while ( match = re.exec(text) ) {
         const ref = match[1];
-        const char = match[2];
+        const char = match[2].replace( /<sup>.*<\/sup>/g, '' );
         const validChar = vocabIndex[ref];
         if ( validChar !== char ) {
             console.warn( `\t\t\t Possible invalid link in ${headingRef} (${match[0]}). Should be ${lookupKey(char)}` );
@@ -121,7 +121,7 @@ Object.keys( references ).forEach( ref => {
                 text: marked(text)
             };
         });
-        checkBrokenLinks(vocabEntry.note);
+        checkBrokenLinks(ref, vocabEntry.note);
         fs.writeFile(
             `public/${ref.replace('.', '-')}.txt`,
             `Usage: ${usage}
