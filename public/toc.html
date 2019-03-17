@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Table of contents () - A Little Daily Dose of Chinese</title>
+        <meta name="viewport" content="initial-scale=1.0, user-scalable=yes, minimum-scale=0.25, maximum-scale=5.0, width=device-width"/>
+        <style type="text/css">
+        @import url('https://fonts.googleapis.com/css?family=Noto+Sans+SC&subset=chinese-simplified');
+        /* colors */
+        body { color: #5e554d; }
+        .body--stroke-1 .entry__info,
+        .body--stroke-1 h1,
+        .body--stroke-1 strong,
+        .body--stroke-1 h2,
+        .body--stroke-1 h3,
+        .link--stroke-1 { color: #3b4b4e; }
+        .body--stroke-2 .entry__info,
+        .body--stroke-2 h1,
+        .body--stroke-2 strong,
+        .body--stroke-2 h2,
+        .body--stroke-2 h3,
+        .link--stroke-2 { color: #3c6f67; }
+        .body--stroke-3 .entry__info,
+        .body--stroke-3 h1,
+        .body--stroke-3 strong,
+        .body--stroke-3 h2,
+        .body--stroke-3 h3,
+        .link--stroke-3 { color: #00916d; }
+        .body--stroke-4 .entry__info,
+        .body--stroke-4 h1,
+        .body--stroke-4 strong,
+        .body--stroke-4 h2,
+        .body--stroke-4 h3,
+        .link--stroke-4 { color: #00b264; }
+        .body--stroke-5 .entry__info,
+        .body--stroke-5 h1,
+        .body--stroke-5 strong,
+        .body--stroke-5 h2,
+        .body--stroke-5 h3,
+        .link--stroke-5 { color: #2a863d; }
+        .body--stroke-6 .entry__info,
+        .body--stroke-6 h1,
+        .body--stroke-6 strong,
+        .body--stroke-6 h2,
+        .body--stroke-6 h3,
+        .link--stroke-6 { color: #45b734; }
+        .body--stroke-7 .entry__info,
+        .body--stroke-7 h1,
+        .body--stroke-7 strong,
+        .body--stroke-7 h2,
+        .body--stroke-7 h3,
+        .link--stroke-7 { color: #f29500; }
+        .body--stroke-8 .entry__info,
+        .body--stroke-8 h1,
+        .body--stroke-8 strong,
+        .body--stroke-8 h2,
+        .body--stroke-8 h3,
+        .link--stroke-8 { color: #ea4a00; }
+        .body--stroke-9 .entry__info,
+        .body--stroke-9 h1,
+        .body--stroke-9 strong,
+        .body--stroke-9 h2,
+        .body--stroke-9 h3,
+        .link--stroke-9 { color: #dd1f29; }
+        .body--stroke-10 .entry__info,
+        .body--stroke-10 h1,
+        .body--stroke-10 strong,
+        .body--stroke-10 h2,
+        .body--stroke-10 h3,
+        .link--stroke-10 { color: #e92d45; }
+        .body--stroke-11 .entry__info,
+        .body--stroke-11 h1,
+        .body--stroke-11 strong,
+        .body--stroke-11 h2,
+        .body--stroke-11 h3,
+        .link--stroke-11 { color: #bc214b; }
+        .body--stroke-12 .entry__info,
+        .body--stroke-12 h1,
+        .body--stroke-12 strong,
+        .body--stroke-12 h2,
+        .body--stroke-12 h3,
+        .link--stroke-12 { color: #752849; }
+
+        .entry__traditional_char {
+            color: #bca765;
+        }
+        .entry__reference {
+            font-size: 0.7em;
+            color: #5e554d;
+        }
+        h1 .entry__reference {
+            font-size: 0.5em;
+        }
+        .entry__reference:empty {
+            display: none;
+        }
+        .entry__reference:before {
+            content: '– ';
+        }
+        .entry__traditional_char:before {
+            content: '(';
+        }
+        .entry__traditional_char:after {
+            content: ')';
+        }
+        a {
+            font-style: normal;
+            color: #279c9a;
+        }
+
+        /* fonts*/
+        body { font-family: 'Noto Sans SC', sans-serif;
+        }
+        strong { font-weight: normal; }
+        a { text-decoration: none; font-weight: bold; }
+
+        /* headings */
+        h1, h2 {
+            margin: 8px 0;
+            font-weight: bold;
+        }
+        h2 {
+            border-top: solid 1px #3d7b90;
+            border-bottom: solid 1px #3d7b90;
+            font-size: 1.2em;
+            padding: 2px 0;
+        }
+        .body--stroke-1 h2 { border-color: #3b4b4e; }
+        .body--stroke-2 h2 { border-color: #3c6f67; }
+        .body--stroke-3 h2 { border-color: #00916d; }
+        .body--stroke-4 h2 { border-color: #00b264; }
+        .body--stroke-5 h2 { border-color: #2a863d; }
+        .body--stroke-6 h2 { border-color: #45b734; }
+        .body--stroke-7 h2 { border-color: #f29500; }
+        .body--stroke-8 h2 { border-color: #ea4a00; }
+        .body--stroke-9 h2 { border-color: #dd1f29; }
+        .body--stroke-10 h2 { border-color: #e92d45; }
+        .body--stroke-11 h2 { border-color: #bc214b; }
+        .body--stroke-12 h2 { border-color: #752849; }
+
+        section strong:first-child {
+            display: block;
+            font-style: italic;
+            margin-bottom: 8px;
+        }
+        h3 {
+            text-decoration: underline;
+            text-transform: uppercase;
+            font-size: .9em;
+            font-weight: bold;
+            margin: 12px 0 6px;
+        }
+        p {
+            margin: 0;
+        }
+        th {
+            text-align: left;
+        }
+        th,
+        td {
+           padding: 0 20px;
+        }
+        th:first-child,
+        td:first-child {
+            padding: 0;
+        }
+        /* entry */
+        .entry__info {
+            font-weight: bold;
+            font-size: 1.1em;
+        }
+        .entry__heading__note {
+            font-size: .7em;
+            color: #5e554d;
+        }
+        .entry__heading__note:after,
+        .entry__heading__note:before {
+            content: '–';
+            padding: 0 4px;
+        }
+        /* usage */
+        .entry__info__usage {
+            font-size: .9em;
+        }
+        .entry__info__usage:before {
+            content: '|';
+            display: inline-block;
+            padding: 0 6px;
+        }
+        .entry__info__difficulty { font-weight: normal; }
+        .entry__info__difficulty:after {
+            content: '++';
+            color: #bcb08e;
+        }
+        section {
+            line-height: 1.5;
+        }
+        .definition em {
+            color: #a29173;
+        }
+        .definition em:before {
+            content: '<';
+        }
+        .definition em:after {
+            content: '>';
+        }
+        ul {
+            list-style: none;
+            margin: 8px 0;
+            padding: 0;
+        }
+        @media all and ( min-width: 720px ) {
+            body {
+                width: 500px; margin: 20px auto;
+            }
+        }
+        @media print {
+            html {
+                height: 100%;
+                display: flex;
+            }
+            body {
+                width: 120mm;
+                height: 170mm;
+                font-size: 8pt;
+                margin: auto;
+            }
+        }
+        </style>
+    </head>
+    <body class="body--stroke-">
+        <header><a href="/toc.html">table of contents</a></header>
+        <h1>
+            <span>Table of contents</span>
+            
+            
+            <span class="entry__reference"></span>
+        </h1>
+        <section>
+           <ul>
+<li><a href="1-01.html">1.01 一</a></li>
+<li><a href="2-01.html">2.01 二</a></li>
+<li><a href="2-02.html">2.02 人</a></li>
+<li><a href="2-03.html">2.03 了</a></li>
+<li><a href="2-04.html">2.04 几</a></li>
+<li><a href="2-05.html">2.05 又</a></li>
+<li><a href="3-01.html">3.01 子</a></li>
+<li><a href="3-02.html">3.02 小</a></li>
+<li><a href="3-03.html">3.03 上</a></li>
+<li><a href="3-04.html">3.04 已</a></li>
+<li><a href="3-05.html">3.05 千</a></li>
+<li><a href="3-06.html">3.06 丈</a></li>
+<li><a href="3-07.html">3.07 也</a></li>
+<li><a href="3-08.html">3.08 个</a></li>
+<li><a href="3-09.html">3.09 么</a></li>
+<li><a href="3-10.html">3.10 干</a></li>
+<li><a href="3-11.html">3.11 才</a></li>
+<li><a href="3-12.html">3.12 下</a></li>
+<li><a href="3-13.html">3.13 久</a></li>
+<li><a href="3-14.html">3.14 之</a></li>
+<li><a href="3-15.html">3.15 大</a></li>
+<li><a href="3-16.html">3.16 己</a></li>
+<li><a href="3-17.html">3.17 女</a></li>
+<li><a href="3-18.html">3.18 口</a></li>
+<li><a href="3-19.html">3.19 门</a></li>
+<li><a href="3-20.html">3.20 工</a></li>
+<li><a href="4-01.html">4.01 水</a></li>
+<li><a href="4-02.html">4.02 为</a></li>
+<li><a href="4-03.html">4.03 太</a></li>
+<li><a href="4-04.html">4.04 以</a></li>
+<li><a href="4-05.html">4.05 长</a></li>
+<li><a href="4-06.html">4.06 不</a></li>
+<li><a href="4-07.html">4.07 历</a></li>
+<li><a href="4-08.html">4.08 心</a></li>
+<li><a href="4-09.html">4.09 从</a></li>
+<li><a href="4-10.html">4.10 木</a></li>
+<li><a href="4-11.html">4.11 天</a></li>
+<li><a href="4-12.html">4.12 片</a></li>
+<li><a href="4-13.html">4.13 无</a></li>
+<li><a href="4-14.html">4.14 比</a></li>
+<li><a href="4-15.html">4.15 风</a></li>
+<li><a href="4-16.html">4.16 方</a></li>
+<li><a href="4-17.html">4.17 巨</a></li>
+<li><a href="4-18.html">4.18 月</a></li>
+<li><a href="4-19.html">4.19 云</a></li>
+<li><a href="4-20.html">4.20 见</a></li>
+<li><a href="5-01.html">5.01 宁</a></li>
+<li><a href="5-02.html">5.02 立</a></li>
+<li><a href="5-03.html">5.03 外</a></li>
+<li><a href="5-04.html">5.04 丝</a></li>
+<li><a href="5-05.html">5.05 平</a></li>
+<li><a href="5-06.html">5.06 东</a></li>
+<li><a href="5-07.html">5.07 包</a></li>
+<li><a href="5-08.html">5.08 甘</a></li>
+<li><a href="5-09.html">5.09 世</a></li>
+<li><a href="5-10.html">5.10 叶</a></li>
+<li><a href="5-11.html">5.11 生</a></li>
+<li><a href="5-12.html">5.12 他</a></li>
+<li><a href="5-13.html">5.13 们</a></li>
+<li><a href="5-14.html">5.14 未</a></li>
+<li><a href="5-15.html">5.15 发</a></li>
+<li><a href="5-16.html">5.16 失</a></li>
+<li><a href="6-01.html">6.01 向</a></li>
+<li><a href="6-02.html">6.02 地</a></li>
+<li><a href="6-03.html">6.03 自</a></li>
+<li><a href="6-04.html">6.04 她</a></li>
+<li><a href="6-05.html">6.05 那</a></li>
+<li><a href="6-06.html">6.06 有</a></li>
+<li><a href="6-07.html">6.07 冲</a></li>
+<li><a href="6-08.html">6.08 因</a></li>
+<li><a href="6-09.html">6.09 好</a></li>
+<li><a href="6-10.html">6.10 西</a></li>
+<li><a href="6-11.html">6.11 回</a></li>
+<li><a href="6-12.html">6.12 多</a></li>
+<li><a href="6-13.html">6.13 曲</a></li>
+<li><a href="6-14.html">6.14 尽</a></li>
+<li><a href="6-15.html">6.15 再</a></li>
+<li><a href="6-16.html">6.16 过</a></li>
+<li><a href="6-17.html">6.17 成</a></li>
+<li><a href="6-18.html">6.18 此</a></li>
+<li><a href="6-19.html">6.19 先</a></li>
+<li><a href="6-20.html">6.20 问</a></li>
+<li><a href="6-21.html">6.21 在</a></li>
+<li><a href="6-22.html">6.22 后</a></li>
+<li><a href="6-23.html">6.23 老</a></li>
+<li><a href="6-24.html">6.24 托</a></li>
+<li><a href="6-25.html">6.25 传</a></li>
+<li><a href="6-26.html">6.26 光</a></li>
+<li><a href="6-27.html">6.27 名</a></li>
+<li><a href="6-28.html">6.28 朵</a></li>
+<li><a href="6-29.html">6.29 当</a></li>
+<li><a href="6-30.html">6.30 次</a></li>
+<li><a href="7-01.html">7.01 丽</a></li>
+<li><a href="7-02.html">7.02 身</a></li>
+<li><a href="7-03.html">7.03 但</a></li>
+<li><a href="7-04.html">7.04 还</a></li>
+<li><a href="7-05.html">7.05 冷</a></li>
+<li><a href="7-06.html">7.06 饭</a></li>
+<li><a href="7-07.html">7.07 忘</a></li>
+<li><a href="7-08.html">7.08 我</a></li>
+<li><a href="7-09.html">7.09 层</a></li>
+<li><a href="7-10.html">7.10 没</a></li>
+<li><a href="7-11.html">7.11 怀</a></li>
+<li><a href="7-12.html">7.12 里</a></li>
+<li><a href="7-13.html">7.13 这</a></li>
+<li><a href="7-14.html">7.14 时</a></li>
+<li><a href="7-15.html">7.15 足</a></li>
+<li><a href="7-16.html">7.16 矣</a></li>
+<li><a href="8-01.html">8.01 鱼</a></li>
+<li><a href="8-02.html">8.02 所</a></li>
+<li><a href="8-03.html">8.03 和</a></li>
+<li><a href="8-04.html">8.04 变</a></li>
+<li><a href="8-05.html">8.05 的</a></li>
+<li><a href="8-06.html">8.06 表</a></li>
+<li><a href="8-07.html">8.07 泡</a></li>
+<li><a href="8-08.html">8.08 饱</a></li>
+<li><a href="8-09.html">8.09 抱</a></li>
+<li><a href="8-10.html">8.10 到</a></li>
+<li><a href="8-11.html">8.11 拥</a></li>
+<li><a href="9-01.html">9.01 看</a></li>
+<li><a href="9-02.html">9.02 显</a></li>
+<li><a href="9-03.html">9.03 亮</a></li>
+<li><a href="9-04.html">9.04 诱</a></li>
+<li><a href="9-05.html">9.05 虽</a></li>
+<li><a href="9-06.html">9.06 是</a></li>
+<li><a href="9-07.html">9.07 觉</a></li>
+<li><a href="9-08.html">9.08 点</a></li>
+<li><a href="9-09.html">9.09 洗</a></li>
+<li><a href="9-10.html">9.10 很</a></li>
+<li><a href="9-11.html">9.11 相</a></li>
+<li><a href="9-12.html">9.12 将</a></li>
+<li><a href="10-01.html">10.01 浪</a></li>
+<li><a href="10-02.html">10.02 浴</a></li>
+<li><a href="10-03.html">10.03 桑</a></li>
+<li><a href="10-04.html">10.04 拿</a></li>
+<li><a href="10-05.html">10.05 特</a></li>
+<li><a href="10-06.html">10.06 旅</a></li>
+<li><a href="10-07.html">10.07 通</a></li>
+<li><a href="10-08.html">10.08 部</a></li>
+<li><a href="10-09.html">10.09 离</a></li>
+<li><a href="10-10.html">10.10 被</a></li>
+<li><a href="10-11.html">10.11 调</a></li>
+<li><a href="10-12.html">10.12 换</a></li>
+<li><a href="10-13.html">10.13 能</a></li>
+<li><a href="10-14.html">10.14 流</a></li>
+<li><a href="10-15.html">10.15 真</a></li>
+<li><a href="11-01.html">11.01 堂</a></li>
+<li><a href="11-02.html">11.02 域</a></li>
+<li><a href="11-03.html">11.03 混</a></li>
+<li><a href="11-04.html">11.04 唯</a></li>
+<li><a href="11-05.html">11.05 常</a></li>
+<li><a href="11-06.html">11.06 眼</a></li>
+<li><a href="11-07.html">11.07 移</a></li>
+<li><a href="11-08.html">11.08 理</a></li>
+<li><a href="11-09.html">11.09 率</a></li>
+<li><a href="11-10.html">11.10 排</a></li>
+<li><a href="11-11.html">11.11 第</a></li>
+<li><a href="11-12.html">11.12 偶</a></li>
+<li><a href="11-13.html">11.13 得</a></li>
+<li><a href="11-14.html">11.14 脸</a></li>
+<li><a href="11-15.html">11.15 盖</a></li>
+<li><a href="11-16.html">11.16 着</a></li>
+<li><a href="11-17.html">11.17 随</a></li>
+<li><a href="11-18.html">11.18 捺</a></li>
+<li><a href="11-19.html">11.19 情</a></li>
+<li><a href="11-20.html">11.20 假</a></li>
+<li><a href="11-21.html">11.21 断</a></li>
+<li><a href="12-01.html">12.01 温</a></li>
+<li><a href="12-02.html">12.02 期</a></li>
+<li><a href="12-03.html">12.03 就</a></li>
+<li><a href="12-04.html">12.04 游</a></li>
+<li><a href="12-05.html">12.05 然</a></li>
+<li><a href="12-06.html">12.06 最</a></li>
+<li><a href="12-07.html">12.07 遍</a></li>
+<li><a href="12-08.html">12.08 等</a></li>
+<li><a href="12-09.html">12.09 道</a></li>
+<li><a href="12-10.html">12.10 遇</a></li>
+<li><a href="12-11.html">12.11 提</a></li>
+<li><a href="12-12.html">12.12 程</a></li>
+<li><a href="12-13.html">12.13 落</a></li>
+</ul>
+
+        </section>
+    </body>
+    <!-- source  -->
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-129740290-2"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'UA-129740290-2');
+    </script>
+    <script async src="index.js"></script>
+</html>
