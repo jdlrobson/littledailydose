@@ -7,8 +7,12 @@
         <style type="text/css">
         @import url('https://fonts.googleapis.com/css?family=Noto+Sans+SC&subset=chinese-simplified');
         * { box-sizing: border-box; }
+        body {
+            margin: 0;
+            color: #5e554d;
+            font-family: 'Noto Sans SC', sans-serif;
+        }
         /* colors */
-        body { color: #5e554d; }
         .body--stroke-1 .entry__info,
         .body--stroke-1 h1,
         .body--stroke-1 strong,
@@ -110,8 +114,6 @@
         }
 
         /* fonts*/
-        body { font-family: 'Noto Sans SC', sans-serif;
-        }
         strong { font-weight: normal; }
         a { text-decoration: none; font-weight: bold; }
 
@@ -211,15 +213,23 @@
             padding: 0;
         }
         header {
+            background: #ddd192;
+            text-align: center;
+        }
+        .header__logo {
+            height: 80px;
+            width: auto;
+        }
+        .header__form {
             height: 40px;
-            position: fixed;
+            position: absolute;
             background: white;
-            top: 2px;
+            top: 80px;
             left: 0;
             right: 0;
         }
         article {
-            padding-top: 40px;
+            padding: 30px 8px 0;
         }
         input {
             width: 100%;
@@ -227,13 +237,13 @@
             border: solid 1px #333;
         }
         @media all and ( min-width: 720px ) {
-            header,
+            .header__form,
             body {
                 width: 500px;
                 margin: auto;
             }
             body {
-                margin: 20px auto;
+                margin: 0 auto;
             }
         }
         @media print {
@@ -255,8 +265,9 @@
     </head>
     <body class="body--stroke-{{strokes}}">
         <header>
-            <form method="get" action="toc.html">
-                <input type="text">
+            <img src="Header.png" class="header__logo" alt="A little daily dose of Chinese">
+            <form method="get" action="toc.html" class="header__form">
+                <input type="text" placeholder="Look up Chinese character">
             </form>
         </header>
         <article>
@@ -300,8 +311,8 @@
     <style type="text/css">
     .results-container {
         margin: auto;
-        position: fixed;
-        top: 40px;
+        position: absolute;
+        top: 120px;
         background: white;
         padding-left: 4px;
         left: 0;
