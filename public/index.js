@@ -111,8 +111,10 @@ function setupSearch(form) {
                     }
                 } ).forEach( function ( match ) {
                     var key = match[0];
+                    var stroke = key.split('.')[0];
                     var item = document.createElement( 'li' );
                     var link = document.createElement( 'a' );
+                    link.className = "link--stroke-" + stroke;
                     link.setAttribute( 'href', key.replace( '.', '-' ) + '.html');
                     link.textContent = key + ' ' + match[1] + ' ' + match[2];
                     match.slice(3).forEach( function ( text ) {
