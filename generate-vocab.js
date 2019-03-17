@@ -100,6 +100,7 @@ function checkBrokenLinks( headingRef, text ) {
     }
 }
 
+const index = [];
 Object.keys( references ).forEach( ref => {
     const vocabEntry = getMarkdown( ref );
     if ( vocabEntry ) {
@@ -122,6 +123,10 @@ Object.keys( references ).forEach( ref => {
             };
         });
         checkBrokenLinks(ref, vocabEntry.note);
+        index.push(
+            [ ref, char, pinyin ]
+                .concat( definitions.map( ( { heading } ) => heading ) )
+        );
         fs.writeFile(
             `public/${ref.replace('.', '-')}.txt`,
             `Usage: ${usage}
@@ -167,7 +172,17 @@ ${vocabEntry.note}`,
                     Object.keys(references).sort((a,b) => parseFloat(a) < parseFloat(b) ? -1 : 1).map((key) =>
                         `* [${key} ${references[key]}](${key.replace('.', '-')}.html)` ).join('\n')
                     )
-            }), {}
+            }), {
+                encoding: 'utf8'
+            }
+        );
+        // make index.json
+        fs.writeFile(
+            `public/index.json`,
+            JSON.stringify(index ),
+            {
+                encoding: 'utf8'
+            }
         );
     } else {
         console.log( 'could not locate', ref );
