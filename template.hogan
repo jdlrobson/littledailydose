@@ -213,7 +213,7 @@
             padding: 0;
         }
         header {
-            background: #ddd192;
+            background: #e1d7c2;
             text-align: center;
         }
         .header__logo {
