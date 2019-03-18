@@ -216,20 +216,21 @@
             text-align: center;
         }
         .header__logo {
-            height: 80px;
+            height: 50px;
             width: auto;
+            max-width: 100%;
         }
         .header__form {
             padding: 5px 30px;
             height: 40px;
             position: absolute;
             background: #e1d7c2;
-            top: 80px;
+            top: 50px;
             left: 0;
             right: 0;
         }
         article {
-            padding: 30px 8px 0;
+            padding: 50px 8px 0;
         }
         input {
             width: 100%;
@@ -321,7 +322,7 @@
     .results-container {
         margin: auto;
         position: absolute;
-        top: 120px;
+        top: 90px;
         background: white;
         padding: 0 40px;
         left: 0;
@@ -343,7 +344,14 @@
         font-size: 0.7em;
         color: #aaa;
     }
-
+    .article--with-search-enabled {
+        opacity: 0.2;
+        position: absolute;
+        bottom: 0;
+        top: 54px;
+        left: auto;
+        right: auto;
+    }
     @media all and ( min-width: 720px ) {
         .results-container {
             width: 500px;

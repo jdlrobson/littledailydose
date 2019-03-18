@@ -64,13 +64,20 @@ function autocomplete( term, callback ) {
     } );
 }
 
+function resetSearch() {
+    var resultsContainer = document.createElement( 'div' );
+    var article = document.querySelector('article');
+    resultsContainer.innerHTML = '';
+    article.className = '';
+}
+
 // Add search event listener
 function setupSearch(form) {
     var resultsContainer = document.createElement( 'div' );
     resultsContainer.className = 'results-container';
     document.body.appendChild( resultsContainer );
     document.documentElement.addEventListener( 'click', function () {
-        resultsContainer.innerHTML = '';
+        resetSearch();
     } );
     resultsContainer.addEventListener( 'click', function ( ev ) {
         ev.stopPropagation();
@@ -83,10 +90,12 @@ function setupSearch(form) {
         }
     } );
     document.querySelector('form input').addEventListener( 'input', function ( ev ) {
+        var article = document.querySelector('article');
         var val = this.value;
         if ( !val ) {
-            resultsContainer.innerHTML = '';
+            resetSearch();
         } else {
+            article.className = 'article--with-search-enabled';
             autocomplete( val, function ( matches ) {
                 resultsContainer.innerHTML = '';
                 var results = document.createElement( 'ul' );
