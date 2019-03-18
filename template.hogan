@@ -213,7 +213,6 @@
             padding: 0;
         }
         header {
-            background: #e1d7c2;
             text-align: center;
         }
         .header__logo {
@@ -221,9 +220,10 @@
             width: auto;
         }
         .header__form {
+            padding: 5px 30px;
             height: 40px;
             position: absolute;
-            background: white;
+            background: #e1d7c2;
             top: 80px;
             left: 0;
             right: 0;
@@ -234,7 +234,16 @@
         input {
             width: 100%;
             height: 30px;
-            border: solid 1px #333;
+            border: none;
+            padding: 8px;
+            border-radius: 10px;
+            background-image: url(search.png);
+            background-repeat: no-repeat;
+            background-size: auto 20px;
+            background-position: right 10px center;
+        }
+        input::placeholder {
+            color: #e0e0d8;
         }
         @media all and ( min-width: 720px ) {
             .header__form,
@@ -314,7 +323,7 @@
         position: absolute;
         top: 120px;
         background: white;
-        padding-left: 4px;
+        padding: 0 40px;
         left: 0;
         right: 0;
     }
