@@ -7,6 +7,8 @@
         <style type="text/css">
         @import url('https://fonts.googleapis.com/css?family=Noto+Sans+SC&subset=chinese-simplified');
         * { box-sizing: border-box; }
+        .body--js-enabled h2 + ul { display: none; }
+        .body--js-enabled h2.active + ul { display: block; }
         body {
             margin: 0;
             color: #5e554d;
@@ -286,6 +288,7 @@
         </style>
     </head>
     <body class="body--stroke-{{strokes}}">
+        <script type="text/javascript">document.body.className += ' body--js-enabled';</script>
         <header>
             <img src="Header.png" class="header__logo" alt="A little daily dose of Chinese">
             <form method="get" action="toc.html" class="header__form">
@@ -368,6 +371,7 @@
         color: white;
         text-transform: uppercase;
         text-align: center;
+        cursor: pointer;
     }
     @media all and ( min-width: 720px ) {
         .results-container {

@@ -140,6 +140,16 @@ function setupSearch(form) {
     } );
 }
 
+function setupToc() {
+    document.addEventListener( 'click', function ( ev ) {
+        if ( ev.target.matches( '.toc h2' ) ) {
+            var className =  ev.target.className || '';
+            ev.target.className = className.indexOf( 'active' ) > -1 ? '' : 'active';
+        }
+    } );
+}
+setupToc();
+
 var searchForm = document.querySelector('form');
 if ( searchForm ) {
     setupSearch(searchForm);
