@@ -163,18 +163,39 @@ ${vocabEntry.note}`,
                 }
             }
         );
+        const sortedKeys = Object.keys(references).sort((a,b) => parseFloat(a) < parseFloat(b) ? -1 : 1);
+        const keyToLink = (key) => `* [${key} ${references[key]}](${key.replace('.', '-')}.html)`;
+        const filterByStroke = ( stroke ) => {
+            return ( key ) => {
+                return key.split('.')[0] === stroke;
+            };
+        }
+        const strokesToc = ( stroke ) => {
+            return `
+## Chinese characters with ${stroke} stroke${stroke === '1' ? '' : 's'}
+${sortedKeys.filter(filterByStroke( stroke )).map(keyToLink).join( '\n' )}`;
+
+        }
         fs.writeFile(
             `public/toc.html`,
             template.render( {
-                char: 'Table of contents',
                 definitions: [],
-                personalNote: marked(
-                    Object.keys(references).sort((a,b) => parseFloat(a) < parseFloat(b) ? -1 : 1).map((key) =>
-                        `* [${key} ${references[key]}](${key.replace('.', '-')}.html)` ).join('\n')
-                    )
-            }), {
-                encoding: 'utf8'
-            }
+                personalNote: '<div class="toc">' + marked( `
+${strokesToc('1')}
+${strokesToc('2')}
+${strokesToc('3')}
+${strokesToc('4')}
+${strokesToc('5')}
+${strokesToc('6')}
+${strokesToc('7')}
+${strokesToc('8')}
+${strokesToc('9')}
+${strokesToc('10')}
+${strokesToc('11')}
+${strokesToc('12')}`
+                ) + '</div>'
+            } ),
+            { encoding: 'utf8' }
         );
         // make index.json
         fs.writeFile(

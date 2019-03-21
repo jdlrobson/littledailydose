@@ -13,6 +13,18 @@
             font-family: 'Noto Sans SC', sans-serif;
         }
         /* colors */
+        #chinese-characters-with-1-stroke { background: #3b4b4e; }
+        #chinese-characters-with-2-strokes { background: #3c6f67; }
+        #chinese-characters-with-3-strokes { background: #00916d; }
+        #chinese-characters-with-4-strokes { background: #00b264; }
+        #chinese-characters-with-5-strokes { background: #2a863d; }
+        #chinese-characters-with-6-strokes { background: #45b734; }
+        #chinese-characters-with-7-strokes { background: #f29500; }
+        #chinese-characters-with-8-strokes { background: #ea4a00; }
+        #chinese-characters-with-9-strokes { background: #dd1f29; }
+        #chinese-characters-with-10-strokes { background: #e92d45; }
+        #chinese-characters-with-11-strokes { background: #bc214b; }
+        #chinese-characters-with-12-strokes { background: #752849; }
         .body--stroke-1 .entry__info,
         .body--stroke-1 h1,
         .body--stroke-1 strong,
@@ -351,6 +363,11 @@
         top: 54px;
         left: auto;
         right: auto;
+    }
+    .toc h2 {
+        color: white;
+        text-transform: uppercase;
+        text-align: center;
     }
     @media all and ( min-width: 720px ) {
         .results-container {
