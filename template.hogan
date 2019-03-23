@@ -280,6 +280,7 @@
         }
         .toc ul {
             padding-bottom: 20px;
+            margin: 0;
         }
         .toc h2 strong {
             font-weight: bold;
