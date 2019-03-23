@@ -163,6 +163,9 @@ h3 {
 p {
     margin: 0;
 }
+p + p {
+    margin-top: 10px;
+}
 th {
     text-align: left;
 }
@@ -240,12 +243,10 @@ header {
     right: 0;
 }
 .body--stroke-toc article {
-    padding: 45px 0 0;
+    padding: 45px 0 15px;
 }
 article {
-    padding: 60px 8px 0;
-    width: 500px;
-    margin: auto;
+    padding: 60px 8px 20px;
 }
 input {
     width: 100%;
@@ -295,6 +296,39 @@ input::placeholder {
 .toc li {
     padding: 2px 30px;
 }
+footer {
+    padding: 8px;
+    background: #5b4a43;
+    text-align: center;
+}
+.body--stroke-about,
+.body--stroke-toc {
+    padding-bottom: 40px;
+    footer {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+    }
+}
+footer a,
+footer li {
+    display: inline;
+    text-transform: uppercase;
+    font-size: 0.8em;
+    color: #a4968d;
+}
+.footer__link--active {
+    font-weight: bold;
+    color: white;
+}
+footer li:after {
+    content: ' | ';
+    padding: 4px;
+}
+footer li:last-child:after {
+    content: '';
+}
 @media all and ( min-width: 400px ) {
     .toc h2 {
         font-size: 1em;
@@ -304,6 +338,10 @@ input::placeholder {
     }
 }
 @media all and ( min-width: 720px ) {
+    footer a,
+    footer li {
+        font-size: 1em;
+    }
     .toc h2 {
         font-size: 1.1em;
     }
@@ -314,6 +352,10 @@ input::placeholder {
     }
     body {
         margin: 0 auto;
+    }
+    article {
+        width: 500px;
+        margin: auto;
     }
     .toc h2 {
         padding-left: 50px;

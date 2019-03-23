@@ -147,6 +147,8 @@ ${vocabEntry.note}`,
         fs.writeFile(
             `public/${ref.replace('.', '-')}.html`,
             template.render( {
+                title: `${char} (${pinyin})`,
+                isVocabPage: true,
                 source: vocabEntry.source,
                 ref,
                 strokes: parseInt( ref.split( '.' )[0], 10 ),
@@ -196,6 +198,8 @@ ${marked(sortedKeys.filter(filterByStroke( stroke )).map(keyToLink).join( '\n' )
     fs.writeFile(
         `public/toc.html`,
         template.render( {
+            isVocabPage: true,
+            title: 'Table of Vocabularies',
             strokes: 'toc',
             definitions: [],
             personalNote: `<div class="toc">
@@ -226,5 +230,22 @@ function generateIndex() {
             }
         );
 }
+function generateAboutUs() {
+    // make index.json
+    fs.writeFile(
+        `public/about.html`,
+        template.render( {
+            isAboutUsPage: true,
+            title: 'About us',
+            strokes: 'about',
+            definitions: [],
+            personalNote: marked('# About us\n' + fs.readFileSync(`littledailydose.wiki/About-us.md`).toString())
+        } ),
+        {
+            encoding: 'utf8'
+        }
+    );
+}
 generateToc();
 generateIndex();
+generateAboutUs();

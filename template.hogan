@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>{{char}} ({{pinyin}}) - A Little Daily Dose of Chinese</title>
+        <title>{{title}} - A Little Daily Dose of Chinese</title>
         <meta name="viewport" content="initial-scale=1.0, user-scalable=yes, minimum-scale=0.25, maximum-scale=5.0, width=device-width"/>
         <link rel="stylesheet" href="index.css">
     </head>
@@ -43,6 +43,15 @@
         </section>
         {{/personalNote}}
         </article>
+        <footer>
+            <ul><li><a href="index.html"
+                 {{#isStoryPage}}class="footer__link--active"{{/isStoryPage}}>Stories</a>
+            </li><li><a href="toc.html"
+                {{#isVocabPage}}class="footer__link--active"{{/isVocabPage}}>Vocabularies</a>
+            </li><li><a href="about.html"
+                {{#isAboutUsPage}}class="footer__link--active"{{/isAboutUsPage}}>About us</a>
+            </li></ul>
+        </footer>
     </body>
     <!-- source {{source}} -->
     <!-- Global site tag (gtag.js) - Google Analytics -->
