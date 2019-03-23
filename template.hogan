@@ -275,6 +275,7 @@
         }
         .toc section {
             margin-bottom: 8px;
+            color: white;
         }
         .toc h2 {
             margin: 0;

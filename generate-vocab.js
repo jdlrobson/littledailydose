@@ -9,6 +9,8 @@ const marked = require('marked');
 
 const references = vocabIndex;
 
+const charToPinyin = {};
+
 const markdownToObj = (text) => {
     const obj = {
         source: 'wiki',
@@ -110,6 +112,8 @@ Object.keys( references ).forEach( ref => {
         const char = vocabEntry.char;
         const traditional = vocabEntry.traditional;
         const pinyin = vocabEntry.pinyin;
+        // record this for later lookup
+        charToPinyin[char] = pinyin;
         const definitions = vocabEntry.definitions.map( ( { heading, text } ) => {
             const headingRef = heading.split( /[一–]/ );
             const reference = headingRef[1] && marked(
@@ -174,7 +178,7 @@ function generateToc() {
     const sortedKeys = Object.keys(references).sort((a,b) => parseFloat(a) < parseFloat(b) ? -1 : 1);
     const keyToLink = (key) => {
         const char = references[key];
-        return `* [${key} ${char}](${key.replace('.', '-')}.html)`;
+        return `* [${key} ${char}](${key.replace('.', '-')}.html) ${charToPinyin[char]}`;
     };
     const filterByStroke = ( stroke ) => {
         return ( key ) => {
