@@ -1,0 +1,53 @@
+.results-container {
+    margin: auto;
+    position: absolute;
+    top: 106px;
+    background: white;
+    padding: 0 40px;
+    left: 0;
+    right: 0;
+    opacity: 0;
+}
+.results-container ul {
+    margin: 0;
+}
+.results-container li {
+    padding: 10px 0;
+    background: white;
+    cursor: pointer;
+}
+.results-container span,
+.results-container a {
+    display: block;
+}
+.results-container span {
+    font-size: 0.7em;
+    color: #aaa;
+}
+.results-container--searching {
+    opacity: 1;
+    bottom: 0;
+}
+.article--with-search-enabled {
+    opacity: 0.2;
+    position: absolute;
+    bottom: 0;
+    top: 54px;
+    left: auto;
+    right: auto;
+}
+.toc h2 span {
+    background-position: right 31px center;
+    background-image: url(arrow.png);
+    background-size: 30px auto;
+    background-repeat: no-repeat;
+    display: block;
+}
+.toc .active span {
+    background-image: url(arrow-fill.png)
+}
+@media all and ( min-width: 720px ) {
+    .results-container {
+        width: 500px;
+    }
+}
