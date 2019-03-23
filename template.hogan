@@ -245,7 +245,7 @@
             right: 0;
         }
         .body--stroke-toc article {
-            padding: 50px 0 0;
+            padding: 35px 0 0;
         }
         article {
             padding: 50px 8px 0;
@@ -270,12 +270,12 @@
         }
         .toc h2 {
             font-weight: normal;
-            font-size: 1.1em;
+            font-size: 0.9em;
             border: none;
             text-align: left;
             cursor: pointer;
             text-transform: uppercase;
-            padding: 10px 0 10px 50px;
+            padding: 10px 0 10px 30px;
             font-family: 'Quicksand', sans-serif;
         }
         .toc ul {
@@ -297,6 +297,10 @@
             }
             body {
                 margin: 0 auto;
+            }
+            .toc h2 {
+                font-size: 1.1em;
+                padding-left: 50px;
             }
         }
         @media print {
@@ -397,8 +401,8 @@
         right: auto;
     }
     .toc h2 span {
-        background-image: url(arrow.png);
         background-position: right 31px center;
+        background-image: url(arrow.png);
         background-size: 30px auto;
         background-repeat: no-repeat;
         display: block;
