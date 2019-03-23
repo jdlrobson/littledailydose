@@ -323,7 +323,9 @@
     <body class="body--stroke-{{strokes}}">
         <script type="text/javascript">document.body.className += ' body--js-enabled';</script>
         <header>
-            <img src="Header.png" class="header__logo" alt="A little daily dose of Chinese">
+            <a href="toc.html">
+                <img src="Header.png" class="header__logo" alt="A little daily dose of Chinese">
+            </a>
             <form method="get" action="toc.html" class="header__form">
                 <input type="text" placeholder="Look up Chinese character">
             </form>
