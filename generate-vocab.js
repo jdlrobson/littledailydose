@@ -178,7 +178,7 @@ function generateToc() {
     const sortedKeys = Object.keys(references).sort((a,b) => parseFloat(a) < parseFloat(b) ? -1 : 1);
     const keyToLink = (key) => {
         const char = references[key];
-        return `* [${key} ${char}](${key.replace('.', '-')}.html) ${charToPinyin[char]}`;
+        return `* [${key} ${char} ${charToPinyin[char]}](${key.replace('.', '-')}.html)`;
     };
     const filterByStroke = ( stroke ) => {
         return ( key ) => {
