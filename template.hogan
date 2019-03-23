@@ -231,7 +231,7 @@
             text-align: center;
         }
         .header__logo {
-            height: 50px;
+            height: 60px;
             width: auto;
             max-width: 100%;
         }
@@ -240,7 +240,7 @@
             height: 40px;
             position: absolute;
             background: #e1d7c2;
-            top: 50px;
+            top: 58px;
             left: 0;
             right: 0;
         }
