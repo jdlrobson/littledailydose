@@ -251,6 +251,8 @@
         }
         article {
             padding: 60px 8px 0;
+            width: 500px;
+            margin: auto;
         }
         input {
             width: 100%;
@@ -403,7 +405,7 @@
         padding: 0 40px;
         left: 0;
         right: 0;
-        bottom: 0;
+        opacity: 0;
     }
     .results-container ul {
         margin: 0;
@@ -420,6 +422,10 @@
     .results-container span {
         font-size: 0.7em;
         color: #aaa;
+    }
+    .results-container--searching {
+        opacity: 1;
+        bottom: 0;
     }
     .article--with-search-enabled {
         opacity: 0.2;

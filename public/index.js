@@ -65,9 +65,12 @@ function autocomplete( term, callback ) {
 }
 
 function resetSearch() {
-    var resultsContainer = document.createElement( 'div' );
+    var resultsContainer = document.querySelector('.results-container');
     var article = document.querySelector('article');
-    resultsContainer.innerHTML = '';
+    if ( resultsContainer ) {
+        resultsContainer.innerHTML = '';
+        resultsContainer.classList.remove('results-container--searching');
+    }
     article.className = '';
 }
 
@@ -98,6 +101,7 @@ function setupSearch(form) {
             article.className = 'article--with-search-enabled';
             autocomplete( val, function ( matches ) {
                 resultsContainer.innerHTML = '';
+                resultsContainer.classList.add('results-container--searching');
                 var results = document.createElement( 'ul' );
                 matches.sort( function ( m1, m2 ) {
                     if (
