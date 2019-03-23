@@ -101,6 +101,8 @@ function checkBrokenLinks( headingRef, text ) {
 }
 
 const index = [];
+
+// generate pages
 Object.keys( references ).forEach( ref => {
     const vocabEntry = getMarkdown( ref );
     if ( vocabEntry ) {
@@ -163,27 +165,36 @@ ${vocabEntry.note}`,
                 }
             }
         );
-        const sortedKeys = Object.keys(references).sort((a,b) => parseFloat(a) < parseFloat(b) ? -1 : 1);
-        const keyToLink = (key) => `* [${key} ${references[key]}](${key.replace('.', '-')}.html)`;
-        const filterByStroke = ( stroke ) => {
-            return ( key ) => {
-                return key.split('.')[0] === stroke;
-            };
-        }
-        const strokesToc = ( stroke ) => {
-            const strokes = stroke === '1' ? 'stroke' : 'strokes';
-            return `<section id="chinese-characters-with-${stroke}-${strokes}">
+    } else {
+        console.log( 'could not locate', ref );
+    }
+} );
+
+function generateToc() {
+    const sortedKeys = Object.keys(references).sort((a,b) => parseFloat(a) < parseFloat(b) ? -1 : 1);
+    const keyToLink = (key) => {
+        const char = references[key];
+        return `* [${key} ${char}](${key.replace('.', '-')}.html)`;
+    };
+    const filterByStroke = ( stroke ) => {
+        return ( key ) => {
+            return key.split('.')[0] === stroke;
+        };
+    }
+    const strokesToc = ( stroke ) => {
+        const strokes = stroke === '1' ? 'stroke' : 'strokes';
+        return `<section id="chinese-characters-with-${stroke}-${strokes}">
 <h2><span>Chinese characters with <strong>${stroke} ${strokes}</strong></span></h2>
 ${marked(sortedKeys.filter(filterByStroke( stroke )).map(keyToLink).join( '\n' ))}
 </section>`;
+    };
 
-        }
-        fs.writeFile(
-            `public/toc.html`,
-            template.render( {
-                strokes: 'toc',
-                definitions: [],
-                personalNote: `<div class="toc">
+    fs.writeFile(
+        `public/toc.html`,
+        template.render( {
+            strokes: 'toc',
+            definitions: [],
+            personalNote: `<div class="toc">
 ${strokesToc('1')}
 ${strokesToc('2')}
 ${strokesToc('3')}
@@ -200,6 +211,8 @@ ${strokesToc('12')}
             } ),
             { encoding: 'utf8' }
         );
+}
+function generateIndex() {
         // make index.json
         fs.writeFile(
             `public/index.json`,
@@ -208,7 +221,6 @@ ${strokesToc('12')}
                 encoding: 'utf8'
             }
         );
-    } else {
-        console.log( 'could not locate', ref );
-    }
-} );
+}
+generateToc();
+generateIndex();
