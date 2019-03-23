@@ -171,16 +171,19 @@ ${vocabEntry.note}`,
             };
         }
         const strokesToc = ( stroke ) => {
-            return `
-## Chinese characters with ${stroke} stroke${stroke === '1' ? '' : 's'}
-${sortedKeys.filter(filterByStroke( stroke )).map(keyToLink).join( '\n' )}`;
+            const strokes = stroke === '1' ? 'stroke' : 'strokes';
+            return `<section id="chinese-characters-with-${stroke}-${strokes}">
+<h2><span>Chinese characters with <strong>${stroke} ${strokes}</strong></span></h2>
+${marked(sortedKeys.filter(filterByStroke( stroke )).map(keyToLink).join( '\n' ))}
+</section>`;
 
         }
         fs.writeFile(
             `public/toc.html`,
             template.render( {
+                strokes: 'toc',
                 definitions: [],
-                personalNote: '<div class="toc">' + marked( `
+                personalNote: `<div class="toc">
 ${strokesToc('1')}
 ${strokesToc('2')}
 ${strokesToc('3')}
@@ -192,8 +195,8 @@ ${strokesToc('8')}
 ${strokesToc('9')}
 ${strokesToc('10')}
 ${strokesToc('11')}
-${strokesToc('12')}`
-                ) + '</div>'
+${strokesToc('12')}
+</div>`
             } ),
             { encoding: 'utf8' }
         );

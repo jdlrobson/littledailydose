@@ -142,11 +142,18 @@ function setupSearch(form) {
 
 function setupToc() {
     document.addEventListener( 'click', function ( ev ) {
-        if ( ev.target.matches( '.toc h2' ) ) {
-            var className =  ev.target.className || '';
-            ev.target.className = className.indexOf( 'active' ) > -1 ? '' : 'active';
+        var target = ev.target;
+        if ( target.matches( '.toc h2 > span' ) ) {
+            target = target.parentNode;
         }
-    } );
+        if ( target.matches( '.toc h2 strong' ) ) {
+            target = target.parentNode.parentNode;
+        }
+        if ( target.matches( '.toc h2' ) ) {
+            var className =  target.className || '';
+            target.className = className.indexOf( 'active' ) > -1 ? '' : 'active';
+        }
+    }, false );
 }
 setupToc();
 

@@ -6,6 +6,7 @@
         <meta name="viewport" content="initial-scale=1.0, user-scalable=yes, minimum-scale=0.25, maximum-scale=5.0, width=device-width"/>
         <style type="text/css">
         @import url('https://fonts.googleapis.com/css?family=Noto+Sans+SC&subset=chinese-simplified');
+        @import url('https://fonts.googleapis.com/css?family=Quicksand:400,700');
         * { box-sizing: border-box; }
         .body--js-enabled h2 + ul { display: none; }
         .body--js-enabled h2.active + ul { display: block; }
@@ -243,6 +244,9 @@
             left: 0;
             right: 0;
         }
+        .body--stroke-toc article {
+            padding: 50px 0 0;
+        }
         article {
             padding: 50px 8px 0;
         }
@@ -259,6 +263,31 @@
         }
         input::placeholder {
             color: #e0e0d8;
+        }
+        .toc a,
+        .toc h2 {
+            color: white;
+        }
+        .toc h2 {
+            font-weight: normal;
+            font-size: 1.1em;
+            border: none;
+            text-align: left;
+            cursor: pointer;
+            text-transform: uppercase;
+            padding: 10px 0 10px 50px;
+            font-family: 'Quicksand', sans-serif;
+        }
+        .toc ul {
+            padding-bottom: 20px;
+        }
+        .toc h2 strong {
+            font-weight: bold;
+            font-style: normal;
+            display: inline;
+        }
+        .toc li {
+            padding: 2px 50px;
         }
         @media all and ( min-width: 720px ) {
             .header__form,
@@ -367,11 +396,15 @@
         left: auto;
         right: auto;
     }
-    .toc h2 {
-        color: white;
-        text-transform: uppercase;
-        text-align: center;
-        cursor: pointer;
+    .toc h2 span {
+        background-image: url(arrow.png);
+        background-position: right 31px center;
+        background-size: 30px auto;
+        background-repeat: no-repeat;
+        display: block;
+    }
+    .toc .active span {
+        background-image: url(arrow-fill.png)
     }
     @media all and ( min-width: 720px ) {
         .results-container {
