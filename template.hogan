@@ -398,11 +398,12 @@
     .results-container {
         margin: auto;
         position: absolute;
-        top: 90px;
+        top: 106px;
         background: white;
         padding: 0 40px;
         left: 0;
         right: 0;
+        bottom: 0;
     }
     .results-container ul {
         margin: 0;
