@@ -268,9 +268,13 @@
         .toc h2 {
             color: white;
         }
+        .toc section {
+            margin-bottom: 8px;
+        }
         .toc h2 {
+            margin: 0;
             font-weight: normal;
-            font-size: 0.9em;
+            font-size: 0.7em;
             border: none;
             text-align: left;
             cursor: pointer;
@@ -285,12 +289,25 @@
         .toc h2 strong {
             font-weight: bold;
             font-style: normal;
-            display: inline;
+            display: inline-block;
+            margin: 0;
+            font-size: 1.3em;
         }
         .toc li {
-            padding: 2px 50px;
+            padding: 2px 30px;
+        }
+        @media all and ( min-width: 400px ) {
+            .toc h2 {
+                font-size: 1em;
+            }
+            .toc h2 strong {
+                font-size: inherit;
+            }
         }
         @media all and ( min-width: 720px ) {
+            .toc h2 {
+                font-size: 1.1em;
+            }
             .header__form,
             body {
                 width: 500px;
@@ -300,8 +317,13 @@
                 margin: 0 auto;
             }
             .toc h2 {
-                font-size: 1.1em;
                 padding-left: 50px;
+            }
+            .toc h2 strong {
+                font-size: inherit;
+            }
+            .toc li {
+                padding: 2px 50px;
             }
         }
         @media print {
