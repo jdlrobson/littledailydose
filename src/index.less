@@ -166,6 +166,18 @@ p {
 p + p {
     margin-top: 10px;
 }
+ul + h3,
+h3 + ul {
+    counter-reset: littlemore;
+}
+h3 ~ ul:before {
+    counter-increment: littlemore;
+    content: counter(littlemore) ". ";
+    position: absolute;
+}
+h3 ~ ul li {
+    padding-left: 20px;
+}
 table {
     font-size: 0.7em;
     border-spacing: unset;
