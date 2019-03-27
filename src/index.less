@@ -166,18 +166,6 @@ p {
 p + p {
     margin-top: 10px;
 }
-ul + h3,
-h3 + ul {
-    counter-reset: littlemore;
-}
-h3 ~ ul:before {
-    counter-increment: littlemore;
-    content: counter(littlemore) ". ";
-    position: absolute;
-}
-h3 ~ ul li {
-    padding-left: 20px;
-}
 table {
     font-size: 0.7em;
     border-spacing: unset;
@@ -242,6 +230,16 @@ ul {
     list-style: none;
     margin: 8px 0;
     padding: 0;
+    ul {
+        padding-left: 22px;
+        margin: 0;
+        li {
+            margin: 0;
+        }
+    }
+    li {
+        margin: 8px 0;
+    }
 }
 header {
     text-align: center;
