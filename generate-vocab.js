@@ -125,6 +125,10 @@ Object.keys( references ).forEach( ref => {
             return {
                 heading: headingRef[0],
                 reference,
+                anchor: heading.replace( /	/g, '' )
+                    .replace( / /g, '-' )
+                    .replace( '.', '' )
+                    .toLowerCase(),
                 text: marked(text)
             };
         });

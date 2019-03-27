@@ -29,7 +29,7 @@
             <span class="entry__reference">{{charReference}}</span>
         </h1>
         {{#definitions}}
-        <h2>
+        <h2 id="{{anchor}}">
             {{heading}}
             <span class="entry__reference">{{{reference}}}</span>
         </h2>
