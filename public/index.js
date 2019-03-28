@@ -3,9 +3,16 @@
  */
 // Add a class to links to denote how many strokes it has
 Array.from(document.querySelectorAll('a')).forEach(function (node) {
-    var match = node.textContent.match(/([0-9]+)\.[0-9]+/);
+    var re = /([0-9]+)\.[0-9]+/;
+    var match = node.textContent.match(re);
+
     if (match) {
         node.className = 'link--stroke-' + match[1];
+    } else {
+        match = node.getAttribute('href').match(/([0-9]+)\-[0-9]+/);
+        if ( match ) {
+            node.className = 'link--stroke-' + match[1];
+        }
     }
 });
 
