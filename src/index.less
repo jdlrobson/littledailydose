@@ -221,9 +221,22 @@ td:first-child {
 }
 .entry__info__difficulty { font-weight: normal; }
 .entry__info__difficulty:after {
-    content: '++';
+    content: '++++';
     color: #bcb08e;
 }
+.entry__info__difficulty--2:after {
+    content: '+++';
+}
+.entry__info__difficulty--3:after {
+    content: '++';
+}
+.entry__info__difficulty--4:after {
+    content: '+';
+}
+.entry__info__difficulty--5:after {
+    content: '';
+}
+
 section {
     line-height: 1.5;
 }

@@ -19,7 +19,8 @@
         <article>
         {{#ref}}
         <div class="entry__info">
-            <span class="refnum">{{ref}}</span><span class="entry__info__usage">Usage: <span class="entry__info__difficulty">{{difficulty}}</span></span>
+            <span class="refnum">{{ref}}</span><span class="entry__info__usage">Usage: <span class="entry__info__difficulty
+                entry__info__difficulty--{{difficultyLength}}">{{difficulty}}</span></span>
         </div>
         {{/ref}}
         <h1>

@@ -165,7 +165,8 @@ ${vocabEntry.note}`,
                 traditional,
                 pinyin,
                 // Not working (parsing incorrectly)
-                difficulty: usage
+                difficulty: usage,
+                difficultyLength: usage.length
             } ),
             {
                 encoding: 'utf8'
