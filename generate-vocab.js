@@ -138,7 +138,7 @@ function generatePage( ref ) {
         });
         checkBrokenLinks(ref, vocabEntry.note);
         index.push(
-            [ ref, char, pinyin ]
+            [ ref, char ].concat( pinyin )
                 .concat( definitions.map( ( { heading } ) => heading ) )
         );
         fs.writeFile(
