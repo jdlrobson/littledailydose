@@ -103,6 +103,10 @@ function checkBrokenLinks( headingRef, text ) {
 
 const index = [];
 
+function innerHTML( htmlSingleNode ) {
+    return htmlSingleNode.replace('<p>','').replace('</p>', ''); // hack
+}
+
 // generate pages
 function generatePage( ref ) {
     const vocabEntry = getMarkdown( ref );
@@ -115,11 +119,11 @@ function generatePage( ref ) {
         charToPinyin[char] = pinyin;
         const definitions = vocabEntry.definitions.map( ( { heading, text } ) => {
             const headingRef = heading.split( /[一–]/ );
-            const reference = headingRef[1] && marked(
+            const reference = headingRef[1] && innerHTML( marked(
                 markReferenceLinks(
                     headingRef[1].replace(/-一/g, '').trim()
                 )
-            ).replace('<p>','').replace('</p>', ''); // hack
+            ) );
             checkBrokenLinks(ref, text);
             return {
                 heading: headingRef[0],
@@ -156,7 +160,8 @@ ${vocabEntry.note}`,
                 source: vocabEntry.source,
                 ref,
                 strokes: parseInt( ref.split( '.' )[0], 10 ),
-                charReference: vocabEntry.charReference,
+                charReference: vocabEntry.charReference ?
+                    innerHTML( marked(vocabEntry.charReference) ) : '',
                 definitions,
                 // requires formatting!
                 personalNote: marked(vocabEntry.note),
