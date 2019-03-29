@@ -105,7 +105,7 @@ function checkBrokenLinks( headingRef, text ) {
 const index = [];
 
 // generate pages
-Object.keys( references ).forEach( ref => {
+function generatePage( ref ) {
     const vocabEntry = getMarkdown( ref );
     if ( vocabEntry ) {
         const usage = Array.from(Array(vocabEntry.difficulty).keys()).fill('+').join('');
@@ -180,7 +180,7 @@ ${vocabEntry.note}`,
     } else {
         console.log( 'could not locate', ref );
     }
-} );
+}
 
 function generateToc() {
     const sortedKeys = Object.keys(references).sort((a,b) => parseFloat(a) < parseFloat(b) ? -1 : 1);
@@ -252,6 +252,13 @@ function generateAboutUs() {
         }
     );
 }
-generateToc();
-generateIndex();
-generateAboutUs();
+
+if ( process.argv[2] ) {
+    generatePage( process.argv[2] );
+} else {
+    Object.keys( references ).forEach( ref => generatePage( ref ) );
+    generateToc();
+    generateIndex();
+    generateAboutUs();
+}
+
