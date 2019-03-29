@@ -26,7 +26,7 @@
         <h1>
             <span>{{char}}</span>
             {{#traditional}}<span class="entry__traditional_char">{{traditional}}</span> {{/traditional}}
-            {{#pinyin}}<span>{{pinyin}}</span>{{/pinyin}}
+            {{#pinyin}}<span class="entry__pinyin">{{.}}</span>{{/pinyin}}
             <span class="entry__reference">{{charReference}}</span>
         </h1>
         {{#definitions}}

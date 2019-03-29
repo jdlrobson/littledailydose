@@ -119,6 +119,12 @@ h1 .entry__reference {
 .entry__reference:before {
     content: '– ';
 }
+.entry__pinyin:before {
+    content: ' · ';
+}
+.entry__traditional_char + .entry__pinyin:before {
+    content: '';
+}
 .entry__traditional_char:before {
     content: '(';
 }

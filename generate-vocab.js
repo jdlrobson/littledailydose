@@ -11,7 +11,7 @@ const references = vocabIndex;
 
 const charToPinyin = {};
 
-const markdownToObj = (text) => {
+const markdownToObj = (text, ref) => {
     const obj = {
         source: 'wiki',
         definitions: []
@@ -24,20 +24,19 @@ const markdownToObj = (text) => {
             obj.difficulty = m[1].length;
         } else if ( i === 1 ) {
             const headingText = line.match(/# (.*)/ );
+            let pinyinPlusReference;
             if ( headingText ) {
                 const m = headingText[1].split( ' ' );
                 if ( m[1].indexOf( '(' ) > -1) {
                     // traditional
                     obj.traditional = m[1].replace(/[\(\)]/g, '');
-                    obj.pinyin = m[2];
+                    pinyinPlusReference = m.slice(2).join(' ').split(/[–-]/);
                 } else {
-                    obj.pinyin = m[1];
+                    pinyinPlusReference = m.slice(1).join(' ').split(/[–-]/);
                 }
                 obj.char = m[0];
-                if ( m[3] ) {
-                    // e.g. 风 (風) fēng – Not to be confused with 凤 (fèng)
-                    obj.charReference = m.slice( 3 ).join( ' ' ).replace( /–/g, '').trim();
-                }
+                obj.pinyin = pinyinPlusReference[0].split('·');
+                obj.charReference = pinyinPlusReference.slice(1).join('-');
             }
         } else {
             const m = line.match(/\#+ (.*)/);
@@ -68,7 +67,7 @@ const getMarkdown = (ref) => {
     } catch ( e ) {
         return slug[ref] ? Object.assign( slug[ref], { source: 'slug' } ) : false;
     }
-    return markdownToObj(file.toString());
+    return markdownToObj(file.toString(), ref);
 };
 
 const defToMarkdown = ( { heading, text } ) =>
@@ -186,7 +185,11 @@ function generateToc() {
     const sortedKeys = Object.keys(references).sort((a,b) => parseFloat(a) < parseFloat(b) ? -1 : 1);
     const keyToLink = (key) => {
         const char = references[key];
-        return `* [${key} ${char} ${charToPinyin[char]}](${key.replace('.', '-')}.html)`;
+        const pinyin = charToPinyin[char];
+        if ( !pinyin ) {
+            throw new Error( `problem in ${key}` );
+        }
+        return `* [${key} ${char} ${pinyin.join('·')}](${key.replace('.', '-')}.html)`;
     };
     const filterByStroke = ( stroke ) => {
         return ( key ) => {
