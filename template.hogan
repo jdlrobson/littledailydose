@@ -13,7 +13,7 @@
                 <img src="Header.png" class="header__logo" alt="A little daily dose of Chinese">
             </a>
             <form method="get" action="toc.html" class="header__form">
-                <input type="text" placeholder="Search directly with index numbers or words">
+                <input type="text" placeholder="Search index / words">
             </form>
         </header>
         <article>
