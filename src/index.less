@@ -305,6 +305,7 @@ article {
     padding: 60px 8px 40px;
 }
 input {
+    font-family: 'Quicksand', sans-serif;
     width: 100%;
     height: 30px;
     margin-top: 4px;
@@ -317,7 +318,9 @@ input {
     background-position: right 10px center;
 }
 input::placeholder {
+    font-family: 'Quicksand', sans-serif;
     color: #e0e0d8;
+    text-decoration: uppercase;
 }
 .toc a,
 .toc h2 {
@@ -356,36 +359,49 @@ footer {
     padding: 8px;
     background: #5b4a43;
     text-align: center;
+    font-family: 'Quicksand', sans-serif;
+    font-weight: bold;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
 }
-.body--stroke-about,
-.body--stroke-toc {
-    padding-bottom: 40px;
-    footer {
-        position: fixed;
-        bottom: 0;
-        left: auto;
-        right: auto;
-        width: 500px;
-    }
-}
-footer a,
-footer li {
+footer a {
     display: inline;
     text-transform: uppercase;
     font-size: 0.8em;
-    color: #a4968d;
+    color: white;
+    &:last-child:after {
+        content: '';
+        padding: 0;
+    }
+
+    &:before,
+    &:after {
+        padding: 8px;
+    }
+    + a:before {
+        content: ' | ';
+    }
+    &.footer__link--active + a:before {
+        content: '';
+    }
+}
+footer a {
+    opacity: 0.5;
 }
 .footer__link--active {
     font-weight: bold;
     color: white;
+    opacity: 1;
+    &:after,
+    &:before {
+        opacity: 1;
+        color: white;
+        content: ' | ';
+    }
 }
-footer li:after {
-    content: ' | ';
-    padding: 4px;
-}
-footer li:last-child:after {
-    content: '';
-}
+
 @media all and ( min-width: 400px ) {
     .toc h2 {
         font-size: 1em;
@@ -395,9 +411,12 @@ footer li:last-child:after {
     }
 }
 @media all and ( min-width: 720px ) {
-    footer a,
-    footer li {
+    footer a {
         font-size: 1em;
+        &:before,
+        &:after {
+            padding: 24px;
+        }
     }
     .toc h2 {
         font-size: 1.1em;
@@ -410,6 +429,11 @@ footer li:last-child:after {
     body {
         margin: 0 auto;
     }
+    footer {
+        left: auto;
+        right: auto;
+    }
+    footer,
     article {
         width: 500px;
         margin: auto;

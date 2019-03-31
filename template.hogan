@@ -13,7 +13,7 @@
                 <img src="Header.png" class="header__logo" alt="A little daily dose of Chinese">
             </a>
             <form method="get" action="toc.html" class="header__form">
-                <input type="text" placeholder="Look up Chinese character">
+                <input type="text" placeholder="Search directly with index numbers or words">
             </form>
         </header>
         <article>
@@ -45,13 +45,12 @@
         {{/personalNote}}
         </article>
         <footer>
-            <ul><li><a href="index.html"
+            <a href="index.html"
                  {{#isStoryPage}}class="footer__link--active"{{/isStoryPage}}>Stories</a>
-            </li><li><a href="toc.html"
+            <a href="toc.html"
                 {{#isVocabPage}}class="footer__link--active"{{/isVocabPage}}>Vocabularies</a>
-            </li><li><a href="about.html"
+            <a href="about.html"
                 {{#isAboutUsPage}}class="footer__link--active"{{/isAboutUsPage}}>About us</a>
-            </li></ul>
         </footer>
     </body>
     <!-- source {{source}} -->
