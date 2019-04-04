@@ -46,11 +46,11 @@
         </article>
         <footer>
             <a href="index.html"
-                 {{#isStoryPage}}class="footer__link--active"{{/isStoryPage}}>Stories</a>
+                 {{#isStoryPage}}class="footer__link--active"{{/isStoryPage}}>Discover</a>
             <a href="toc.html"
-                {{#isVocabPage}}class="footer__link--active"{{/isVocabPage}}>Vocabularies</a>
+                {{#isVocabPage}}class="footer__link--active"{{/isVocabPage}}>Learn</a>
             <a href="about.html"
-                {{#isAboutUsPage}}class="footer__link--active"{{/isAboutUsPage}}>About us</a>
+                {{#isAboutUsPage}}class="footer__link--active"{{/isAboutUsPage}}>Contact</a>
         </footer>
     </body>
     <!-- source {{source}} -->
