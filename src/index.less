@@ -298,8 +298,11 @@ header {
     left: 0;
     right: 0;
 }
+
+@toc-margin-bottom: 8px;
+
 .body--stroke-toc article {
-    padding: 45px 0 15px;
+    padding: 45px 0 15px + @toc-margin-bottom;
 }
 article {
     padding: 60px 8px 40px;
@@ -327,7 +330,7 @@ input::placeholder {
     color: white;
 }
 .toc section {
-    margin-bottom: 8px;
+    margin-bottom: @toc-margin-bottom;
     color: white;
 }
 .toc h2 {
