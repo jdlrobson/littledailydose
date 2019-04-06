@@ -210,7 +210,7 @@ ${marked(sortedKeys.filter(filterByStroke( stroke )).map(keyToLink).join( '\n' )
     };
 
     fs.writeFile(
-        `public/toc.html`,
+        `public/index.html`,
         template.render( {
             isVocabPage: true,
             title: 'Table of Vocabularies',
@@ -244,16 +244,16 @@ function generateIndex() {
             }
         );
 }
-function generateAboutUs() {
+function generateContactUs() {
     // make index.json
     fs.writeFile(
-        `public/about.html`,
+        `public/contact.html`,
         template.render( {
-            isAboutUsPage: true,
-            title: 'About us',
-            strokes: 'about',
+            isContactUsPage: true,
+            title: 'Contact us',
+            strokes: 'contact',
             definitions: [],
-            personalNote: marked('# About us\n' + fs.readFileSync(`littledailydose.wiki/About-us.md`).toString())
+            personalNote: marked('# Contact us\n' + fs.readFileSync(`littledailydose.wiki/Contact-us.md`).toString())
         } ),
         {
             encoding: 'utf8'
@@ -277,7 +277,7 @@ function generateBookPage() {
     </section>`
     // make index.html
     fs.writeFile(
-        `public/index.html`,
+        `public/about.html`,
         template.render( {
             articlehtml,
             isStoryPage: true,
@@ -298,7 +298,7 @@ if ( process.argv[2] ) {
     Object.keys( references ).forEach( ref => generatePage( ref ) );
     generateToc();
     generateIndex();
-    generateAboutUs();
+    generateContactUs();
     generateBookPage();
 }
 
