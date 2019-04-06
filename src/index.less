@@ -1,5 +1,11 @@
+
+@article-width: 500px;
+@header-height: 60px;
+@footer-height: 40px;
+
 @import url('https://fonts.googleapis.com/css?family=Noto+Sans+SC&subset=chinese-simplified');
 @import url('https://fonts.googleapis.com/css?family=Quicksand:400,700');
+
 * { box-sizing: border-box; }
 .body--js-enabled h2 + ul { display: none; }
 .body--js-enabled h2.active + ul { display: block; }
@@ -135,6 +141,9 @@ h1 .entry__reference {
 a {
     font-style: normal;
     color: #279c9a;
+    &:hover {
+        text-decoration: underline;
+    }
 }
 
 /* fonts*/
@@ -285,7 +294,7 @@ header {
     text-align: center;
 }
 .header__logo {
-    height: 60px;
+    height: @header-height;
     width: auto;
     max-width: 100%;
 }
@@ -301,13 +310,16 @@ header {
 
 @toc-margin-bottom: 8px;
 
-.body--stroke-toc article {
-    padding: 45px 0 15px + @toc-margin-bottom;
+.body--stroke-toc {
+    article {
+        padding: 45px 0 15px + @toc-margin-bottom;
+    }
 }
+
 article {
-    padding: 60px 8px 40px;
+    padding: 60px 8px @footer-height;
 }
-input {
+.header__form__search-input {
     font-family: 'Quicksand', sans-serif;
     width: 100%;
     height: 30px;
@@ -319,12 +331,17 @@ input {
     background-repeat: no-repeat;
     background-size: auto 20px;
     background-position: right 10px center;
+    &::placeholder {
+        font-family: 'Quicksand', sans-serif;
+        color: #e0e0d8;
+        text-transform: uppercase;
+    }
 }
-input::placeholder {
-    font-family: 'Quicksand', sans-serif;
-    color: #e0e0d8;
-    text-transform: uppercase;
+
+.toc {
+    padding-bottom: @toc-margin-bottom * 2;
 }
+
 .toc a,
 .toc h2 {
     color: white;
@@ -371,6 +388,7 @@ footer {
 }
 footer a {
     display: inline;
+    text-decoration: none;
     text-transform: uppercase;
     font-size: 0.8em;
     color: white;
@@ -382,10 +400,15 @@ footer a {
     &:before,
     &:after {
         padding: 8px;
+        display: inline-block
     }
     + a:before {
         content: ' | ';
+        &:hover {
+            text-decoration: none;
+        }
     }
+    &.footer__link--active:first-child:before,
     &.footer__link--active + a:before {
         content: '';
         padding: 0;
@@ -393,6 +416,7 @@ footer a {
 }
 footer a {
     opacity: 0.5;
+    text-decoration: none;
 }
 .footer__link--active {
     font-weight: bold;
@@ -406,6 +430,50 @@ footer a {
     }
 }
 
+// book page
+.bookcover {
+    width: 100%;
+    height: auto;
+    display: block;
+    margin: auto;
+}
+.body--stroke-buy article {
+    padding: 0;
+    h1 {
+        font-weight: bold;
+        margin: 0;
+        font-size: 1.5em;
+    }
+    a {
+        color: white;
+    }
+    p {
+        padding: 0 50px;
+        line-height: 2.1;
+        font-size: 0.9em;
+    }
+    hr {
+        content: '';
+        display: block;
+        border-top: 0;
+        border-bottom: solid 1px white;
+        width: 50px;
+        margin: 20px auto;
+    }
+    article {
+        padding: 43px 0 0;
+    }
+    .paypal-form {
+        margin: 30px 0;
+    }
+    section {
+        background: #d30007;
+        color: white;
+        padding: 20px 20px @footer-height;
+        text-align: center;
+    }
+}
+
 @media all and ( min-width: 400px ) {
     .toc h2 {
         font-size: 1em;
@@ -415,11 +483,49 @@ footer a {
     }
 }
 @media all and ( min-width: 720px ) {
+    .body--stroke-buy {
+        width: 100%;
+        footer {
+            left: 0;
+            right: 0;
+        }
+        article {
+            width: 100%;
+            position: relative;
+        }
+        .bookcover {
+            display: block;
+            object-fit: cover;
+            width: 100vw;
+            height: 100vh;
+        }
+        p {
+            line-height: 1.8;
+            padding: 0;
+            font-size: 0.8em;
+        }
+        section {
+            position: absolute;
+            top: 0;
+            left: 68%;
+            margin-right: 5%;
+            bottom: 0;
+            padding: 0 3%;
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            text-align: center;
+        }
+    }
+
     footer a {
         font-size: 1em;
         &:before,
         &:after {
-            padding: 24px;
+            padding: 0 24px;
+        }
+        &:hover {
+            text-decoration: underline;
         }
     }
     .toc h2 {
@@ -427,7 +533,7 @@ footer a {
     }
     .header__form,
     body {
-        width: 500px;
+        width: @article-width;
         margin: auto;
     }
     body {
@@ -439,7 +545,7 @@ footer a {
     }
     footer,
     article {
-        width: 500px;
+        width: @article-width;
         margin: auto;
     }
     .toc h2 {
@@ -460,8 +566,13 @@ footer a {
     }
     section {
         text-align: center;
+        img {
+            width: 100%;
+            height: auto;
+        }
     }
 }
+
 @media print {
     header {
         display: none;

@@ -1,119 +1,48 @@
-<!DOCTYPE HTML>
-<html lang="en">
+<!DOCTYPE html>
+<html>
     <head>
-        <title>A Little Daily Dose of Chinese</title>
-        <meta name="viewport" content="width=device-width"/>
-        <style>
-            @import url('https://fonts.googleapis.com/css?family=Noto+Sans+SC&subset=chinese-simplified');
-            body {
-                font-family: 'Noto Sans SC', sans-serif;
-                margin: 0;
-            }
-            h1 {
-                font-weight: bold;
-                margin: 0;
-                font-size: 1.5em;
-            }
-            * {
-                box-sizing: border-box;
-            }
-            .bookcover {
-                width: 540px;
-                height: auto;
-                display: block;
-            }
-            em,
-            strong {
-                display: block;
-            }
-            div {
-                font-size: 0.9em;
-            }
-            a {
-                color: white;
-            }
-            p {
-                margin: 0;
-                padding: 0 50px;
-                line-height: 2.1;
-                font-size: 0.9em;
-            }
-            p ~ p:before {
-                content: '';
-                display: block;
-                border-top: solid 1px white;
-                width: 50px;
-                margin: 20px auto;
-            }
-            article {
-                overflow: hidden;
-                margin: auto;
-            }
-            form {
-                margin: 30px 0;
-            }
-            section {
-                background: #d30007;
-                color: white;
-                padding: 20px 20px 40px;
-                text-align: center;
-            }
-            @media all and ( min-width: 500px ) {
-                /* 3000 x 820 */
-                article {
-                    width: 100%;
-                    position: relative;
-                }
-                .bookcover {
-                    display: block;
-                    object-fit: cover;
-                    width: 100vw;
-                    height: 100vh;
-                }
-                p {
-                    line-height: 1.8;
-                    padding: 0;
-                    font-size: 0.8em;
-                }
-                section {
-                    position: absolute;
-                    top: 0;
-                    left: 68%;
-                    margin-right: 5%;
-                    bottom: 0;
-                    padding: 0 3%;
-                    display: flex;
-                    justify-content: center;
-                    flex-direction: column;
-                    text-align: center;
-                }
-            }
-        </style>
-        <!-- Global site tag (gtag.js) - Google Analytics -->
-        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-129740290-2"></script>
-        <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'UA-129740290-2');
-        </script>
-
+        <meta charset="UTF-8">
+        <title>A Little Daily Dose of Chinese - Buy the book</title>
+        <meta name="viewport" content="initial-scale=1.0, user-scalable=yes, minimum-scale=0.25, maximum-scale=5.0, width=device-width"/>
+        <link rel="stylesheet" href="index.css">
     </head>
-    <body>
+    <body class="body--stroke-buy">
+        <script type="text/javascript">document.body.className += ' body--js-enabled';</script>
         <article>
-            <img class="bookcover" src="Header_1.jpg" width="2100" alt="A Little Daily Dose" />
-            <section>
-                <h1>Pre-order Special</h1>
-                <strong>USD: $28.80</strong>
-                <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
-                    <input type="hidden" name="cmd" value="_s-xclick">
-                    <input type="hidden" name="hosted_button_id" value="ADGZNJEJ9GN4C">
-                    <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
-                    <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
-                </form>
-                <p>We are in the midst of consolidating book orders and looking forward to getting them printed in March (books will be sent out in April/May)</p>
-                <p>Meanwhile, follow us on <a href="https://instagram.com/linzybearswings/">Instagram</a> or <a href="https://www.kickstarter.com/projects/linzy/a-little-daily-dose">Kickstarter</a> for more updates</p>
-            </section>
+        <img class="bookcover" src="Header_1.jpg" width="2100" alt="A Little Daily Dose" />
+    <section>
+        <h1>Pre-order Special</h1>
+        <strong>USD: $28.80</strong>
+        <form class="paypal-form" action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+            <input type="hidden" name="cmd" value="_s-xclick">
+            <input type="hidden" name="hosted_button_id" value="ADGZNJEJ9GN4C">
+            <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+            <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+        </form>
+        <p>We are in the midst of consolidating book orders and looking forward to getting them sent out in May.</p>
+<hr>
+<p>Meanwhile, follow us on <a href="https://instagram.com/linzybearswings/">Instagram</a> or <a href="https://www.kickstarter.com/projects/linzy/a-little-daily-dose">Kickstarter</a> for more updates.</p>
+
+    </section>
         </article>
+        <footer>
+            <a href="index.html"
+                 class="footer__link--active">Discover</a>
+            <a href="toc.html"
+                >Learn</a>
+            <a href="about.html"
+                >Contact</a>
+        </footer>
     </body>
+    <!-- source  -->
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-129740290-2"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'UA-129740290-2');
+    </script>
+    <script async src="index.js"></script>
+    <link rel="stylesheet" href="index--js.css">
 </html>

@@ -2,20 +2,22 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>{{title}} - A Little Daily Dose of Chinese</title>
+        <title>A Little Daily Dose of Chinese{{#title}} - {{/title}}{{title}}</title>
         <meta name="viewport" content="initial-scale=1.0, user-scalable=yes, minimum-scale=0.25, maximum-scale=5.0, width=device-width"/>
         <link rel="stylesheet" href="index.css">
     </head>
     <body class="body--stroke-{{strokes}}">
         <script type="text/javascript">document.body.className += ' body--js-enabled';</script>
+        {{^noHeader}}
         <header>
             <a href="toc.html">
                 <img src="Header.png" class="header__logo" alt="A little daily dose of Chinese">
             </a>
             <form method="get" action="toc.html" class="header__form">
-                <input type="text" placeholder="Search index / words">
+                <input class="header__form__search-input" type="text" placeholder="Search index / words">
             </form>
         </header>
+        {{/noHeader}}
         <article>
         {{#ref}}
         <div class="entry__info">
@@ -23,12 +25,14 @@
                 entry__info__difficulty--{{difficultyLength}}">{{difficulty}}</span></span>
         </div>
         {{/ref}}
+        {{^noHeading}}
         <h1>
             <span class="entry__simplified_char">{{char}}</span>
             {{#traditional}}<span class="entry__traditional_char">{{traditional}}</span> {{/traditional}}
             {{#pinyin}}<span class="entry__pinyin">{{.}}</span>{{/pinyin}}
             <span class="entry__reference">{{{charReference}}}</span>
         </h1>
+        {{/noHeading}}
         {{#definitions}}
         <h2 id="{{anchor}}">
             {{heading}}
@@ -43,6 +47,7 @@
            {{{personalNote}}}
         </section>
         {{/personalNote}}
+        {{{articlehtml}}}
         </article>
         <footer>
             <a href="index.html"
