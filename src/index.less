@@ -9,7 +9,13 @@
 * { box-sizing: border-box; }
 .body--js-enabled h2 + ul { display: none; }
 .body--js-enabled h2.active + ul { display: block; }
+html {
+    height: 100%;
+    // make the page always have a scroll bar
+    margin-bottom: 1px;
+}
 body {
+    overflow: scroll;
     margin: 0;
     color: #5e554d;
     font-family: 'Noto Sans SC', sans-serif;
