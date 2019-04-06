@@ -439,27 +439,6 @@ article {
 }
 
 @media all and ( min-width: 720px ) {
-    .body--entry,
-    .body--stroke-contact,
-    .body--stroke-toc {
-        .paypal-form {
-            display: block;
-        }
-    }
-    .paypal-form {
-        margin: 0;
-        background: white;
-        display: block;
-        position: fixed;
-        right: 10px;
-        top: 10px;
-        padding: 50px 25px;
-        border-radius: 300px;
-        text-align: center;
-        h2 {
-            border: 0;
-        }
-    }
     .body--stroke-contact {
         section {
             padding: 0 50px 20px;
@@ -517,6 +496,30 @@ article {
 .body--stroke-buy {
     article {
         padding: 0;
+    }
+}
+
+@media all and ( min-width: 1000px ) {
+    .body--entry,
+    .body--stroke-contact,
+    .body--stroke-toc {
+        .paypal-form {
+            display: block;
+        }
+    }
+    .paypal-form {
+        margin: 0;
+        background: white;
+        display: block;
+        position: fixed;
+        right: 10px;
+        top: 10px;
+        padding: 33px 13px 44px;
+        border-radius: 300px;
+        text-align: center;
+        h2 {
+            border: 0;
+        }
     }
 }
 
