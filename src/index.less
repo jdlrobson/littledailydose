@@ -2,6 +2,7 @@
 @article-width: 500px;
 @header-height: 60px;
 @footer-height: 40px;
+@color-dailydose-light: #e1d7c2;
 
 @import url('https://fonts.googleapis.com/css?family=Noto+Sans+SC&subset=chinese-simplified');
 @import url('https://fonts.googleapis.com/css?family=Quicksand:400,700');
@@ -14,6 +15,7 @@ html {
     // make the page always have a scroll bar
     margin-bottom: 1px;
 }
+
 body {
     overflow: scroll;
     margin: 0;
@@ -286,7 +288,11 @@ li em:after,
     content: '>';
 }
 hr {
-    margin-top: 40px;
+    display: block;
+    border-top: 0;
+    border-bottom: solid 1px @color-dailydose-light;
+    width: 50px;
+    margin: 20px auto;
 }
 ul {
     list-style: none;
@@ -315,7 +321,7 @@ header {
     padding: 5px 30px;
     height: 50px;
     position: absolute;
-    background: #e1d7c2;
+    background: @color-dailydose-light;
     top: 58px;
     left: 0;
     right: 0;
@@ -396,42 +402,6 @@ article {
     display: block;
     margin: auto;
 }
-.body--stroke-buy article {
-    padding: 0;
-    h1 {
-        font-weight: bold;
-        margin: 0;
-        font-size: 1.5em;
-    }
-    a {
-        color: white;
-    }
-    p {
-        padding: 0 50px;
-        line-height: 2.1;
-        font-size: 0.9em;
-    }
-    hr {
-        content: '';
-        display: block;
-        border-top: 0;
-        border-bottom: solid 1px white;
-        width: 50px;
-        margin: 20px auto;
-    }
-    article {
-        padding: 43px 0 0;
-    }
-    .paypal-form {
-        margin: 30px 0;
-    }
-    section {
-        background: #d30007;
-        color: white;
-        padding: 20px 20px @footer-height;
-        text-align: center;
-    }
-}
 
 @media all and ( min-width: 400px ) {
     .toc h2 {
@@ -442,37 +412,6 @@ article {
     }
 }
 @media all and ( min-width: 720px ) {
-    .body--stroke-buy {
-        width: 100%;
-        article {
-            width: 100%;
-            position: relative;
-        }
-        .bookcover {
-            display: block;
-            object-fit: cover;
-            width: 100vw;
-            height: 100vh;
-        }
-        p {
-            line-height: 1.8;
-            padding: 0;
-            font-size: 0.8em;
-        }
-        section {
-            position: absolute;
-            top: 0;
-            left: 68%;
-            margin-right: 5%;
-            bottom: 0;
-            padding: 0 3%;
-            display: flex;
-            justify-content: center;
-            flex-direction: column;
-            text-align: center;
-        }
-    }
-
     .toc h2 {
         font-size: 1.1em;
     }
@@ -512,6 +451,33 @@ article {
             width: auto;
             height: 200px;
         }
+    }
+}
+
+.book-buy {
+    padding: 50px;
+    text-align: center;
+}
+
+.paypal-form {
+    margin: 30px 0;
+    padding: 8px;
+
+    h2 {
+        margin: 0;
+        font-size: 1em;
+        border-color: @color-dailydose-light;
+        text-transform: uppercase;
+    }
+    strong {
+        display: block;
+        padding: 0 0 12px;
+    }
+}
+
+.body--stroke-buy {
+    article {
+        padding: 0;
     }
 }
 
