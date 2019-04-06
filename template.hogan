@@ -6,7 +6,7 @@
         <meta name="viewport" content="initial-scale=1.0, user-scalable=yes, minimum-scale=0.25, maximum-scale=5.0, width=device-width"/>
         <link rel="stylesheet" href="index.css">
     </head>
-    <body class="body--stroke-{{strokes}}">
+    <body class="body--stroke-{{strokes}} {{bodyClasses}}">
         <script type="text/javascript">document.body.className += ' body--js-enabled';</script>
         {{^noHeader}}
         <header>

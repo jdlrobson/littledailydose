@@ -7,6 +7,15 @@ const template = hogan.compile(
 const slug = JSON.parse( fs.readFileSync( 'slug.json' ) );
 const marked = require('marked');
 
+const paypalForm = `<form class="paypal-form" action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+<h2>Pre-order</h2>
+<strong>USD: $28.80</strong>
+<input type="hidden" name="cmd" value="_s-xclick">
+<input type="hidden" name="hosted_button_id" value="ADGZNJEJ9GN4C">
+<input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+<img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+</form>`;
+
 const references = vocabIndex;
 
 const charToPinyin = {};
@@ -155,6 +164,8 @@ ${vocabEntry.note}`,
         fs.writeFile(
             `public/${ref.replace('.', '-')}.html`,
             template.render( {
+                articlehtml: paypalForm,
+                bodyClasses: 'body--entry',
                 title: `${char} (${pinyin})`,
                 isVocabPage: true,
                 source: vocabEntry.source,
@@ -213,6 +224,7 @@ ${marked(sortedKeys.filter(filterByStroke( stroke )).map(keyToLink).join( '\n' )
         `public/index.html`,
         template.render( {
             isVocabPage: true,
+            articlehtml: paypalForm,
             title: 'Table of Vocabularies',
             strokes: 'toc',
             definitions: [],
@@ -249,6 +261,7 @@ function generateContactUs() {
     fs.writeFile(
         `public/contact.html`,
         template.render( {
+            articlehtml: paypalForm,
             isContactUsPage: true,
             title: 'Contact us',
             strokes: 'contact',
@@ -266,14 +279,7 @@ function generateBookPage() {
     const articlehtml = `<img class="bookcover" src="Header_1.jpg" width="2100" alt="A Little Daily Dose" />
     <section class="book-buy">
         ${marked( bookText )}
-        <form class="paypal-form" action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
-            <h2>Pre-order Special</h2>
-            <strong>USD: $28.80</strong>
-            <input type="hidden" name="cmd" value="_s-xclick">
-            <input type="hidden" name="hosted_button_id" value="ADGZNJEJ9GN4C">
-            <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
-            <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
-        </form>
+        ${paypalForm}
     </section>`
     // make index.html
     fs.writeFile(
