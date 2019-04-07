@@ -187,14 +187,20 @@ function wikify( ref, vocabEntries ) {
     } );
     return vocabEntries;
 }
+
+function populateSearchIndex(ref, vocabEntries) {
+    vocabEntries.entries.forEach((entry) => {
+        index.push(
+            [ entry.traditional, ref, entry.char  ].concat( entry.pinyin )
+                .concat( entry.definitions.map( ( { heading } ) => heading ) )
+        );
+    });
+}
+
 // generate pages
 function generatePage( ref ) {
     const vocabEntries = wikify( ref, getMarkdown( ref ) );
     const vocabEntry = vocabEntries && vocabEntries.entries[0];
-    const definitions = vocabEntries.entries
-        .map( ( entry ) => entry.definitions ).reduce(( prev = [], currentValue ) => {
-            return prev.concat( currentValue );
-        } );
     if ( vocabEntry ) {
         const usage = Array.from(Array(vocabEntries.difficulty).keys()).fill('+').join('');
         const char = vocabEntry.char;
@@ -202,10 +208,7 @@ function generatePage( ref ) {
         const pinyin = vocabEntry.pinyin;
         // record this for later lookup
         charToPinyin[char] = pinyin;
-        index.push(
-            [ traditional, ref, char  ].concat( pinyin )
-                .concat( definitions.map( ( { heading } ) => heading ) )
-        );
+        populateSearchIndex(ref, vocabEntries);
         fs.writeFile(
             `public/${ref.replace('.', '-')}.html`,
             template.render( {

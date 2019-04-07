@@ -166,7 +166,7 @@ function setupSearch(form) {
                     link.textContent = textContent;
                     word.definitions.forEach( function ( text ) {
                         var def = document.createElement( 'span' );
-                        def.innerText = text;
+                        def.innerText = text.replace(/[0-9]+\./, '').trim();
                         link.appendChild( def );
                     } );
                     item.appendChild( link );
