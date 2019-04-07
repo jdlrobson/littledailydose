@@ -270,19 +270,16 @@ section {
     line-height: 1.5;
 }
 
-li em,
-.definition em {
+.em--literal {
     color: #d0c8ba;
 }
 .definition ul li {
     margin-bottom: 10px;
 }
-li em:before,
-.definition em:before {
+.em--literal:before {
     content: '<';
 }
-li em:after,
-.definition em:after {
+.em--literal:after {
     content: '>';
 }
 hr {
@@ -291,6 +288,9 @@ hr {
     border-bottom: solid 1px @color-dailydose-light;
     width: 50px;
     margin: 20px auto;
+}
+p + ul {
+    padding-left: 22px;
 }
 ul {
     list-style: none;

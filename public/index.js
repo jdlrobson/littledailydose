@@ -185,6 +185,16 @@ function setupToc() {
 }
 setupToc();
 
+function setupLiterals() {
+    var em = document.querySelectorAll('em');
+    Array.from( em ).forEach(function ( em ) {
+        if ( em.textContent.indexOf( 'Literal.' ) > -1 ) {
+            em.classList.add( 'em--literal');
+        }
+    } );
+}
+setupLiterals();
+
 var searchForm = document.querySelector('form');
 if ( searchForm ) {
     setupSearch(searchForm);
