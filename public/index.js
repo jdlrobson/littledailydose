@@ -82,19 +82,21 @@ function resetSearch() {
 
 function toWord( match ) {
     match = match.map( function ( component ) {
-        return component.trim();
+        return component ? component.trim() : component;
     } );
-    var word = { character: match[1], pinyin: [], definitions: [] };
-    var defIndex = match.slice(2).findIndex( function ( word ) {
+    var word = { key: match[1],
+        character: match[2], pinyin: [], definitions: [] };
+    var defIndex = match.slice(3).findIndex( function ( word ) {
         return word.indexOf( '.' ) > -1;
     } );
     if ( defIndex === -1 ) {
         defIndex = match.length - 1;
     } else {
-        defIndex += 2;
+        defIndex += 3;
     }
-    word.pinyin = match.slice( 2, defIndex );
+    word.pinyin = match.slice( 3, defIndex );
     word.definitions = match.slice( defIndex );
+    word.traditional = match[0];
     return word;
 }
 
@@ -146,14 +148,22 @@ function setupSearch(form) {
                         return parseFloat( m1[0] ) < parseFloat( m2[0] ) ? -1 : 1;
                     }
                 } ).forEach( function ( match ) {
-                    var key = match[0];
-                    var stroke = key.split('.')[0];
+                    if ( !match ) {
+                        return;
+                    }
                     var item = document.createElement( 'li' );
                     var link = document.createElement( 'a' );
                     var word = toWord(match);
+                    var key = word.key;
+                    var stroke = key.split('.')[0];
                     link.className = "link--stroke-" + stroke;
                     link.setAttribute( 'href', key.replace( '.', '-' ) + '.html');
-                    link.textContent = key + ' ' + word.character + ' ' + word.pinyin.join( ' · ' );
+                    var textContent = key + ' ' + word.character;
+                    if ( word.traditional ) {
+                        textContent += ' (' + word.traditional + ')';
+                    }
+                    textContent += ' ' + word.pinyin.join( ' · ' );
+                    link.textContent = textContent;
                     word.definitions.forEach( function ( text ) {
                         var def = document.createElement( 'span' );
                         def.innerText = text;

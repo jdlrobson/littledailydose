@@ -203,7 +203,7 @@ function generatePage( ref ) {
         // record this for later lookup
         charToPinyin[char] = pinyin;
         index.push(
-            [ ref, char ].concat( pinyin )
+            [ traditional, ref, char  ].concat( pinyin )
                 .concat( definitions.map( ( { heading } ) => heading ) )
         );
         fs.writeFile(
