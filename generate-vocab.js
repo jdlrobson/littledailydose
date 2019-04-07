@@ -207,17 +207,6 @@ function generatePage( ref ) {
                 .concat( definitions.map( ( { heading } ) => heading ) )
         );
         fs.writeFile(
-            `public/${ref.replace('.', '-')}.txt`,
-            `Usage: ${usage}
-# ${char}${traditional ? ` (${traditional})` : ''} ${pinyin}
-${vocabEntry.definitions.map(defToMarkdown).join('\n')}
-
-${vocabEntry.note}`,
-            {
-                encoding: 'utf8'
-            }
-        );
-        fs.writeFile(
             `public/${ref.replace('.', '-')}.html`,
             template.render( {
                 articlehtml: paypalForm,
