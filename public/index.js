@@ -73,12 +73,11 @@ function autocomplete( term, callback ) {
 
 function resetSearch() {
     var resultsContainer = document.querySelector('.results-container');
-    var article = document.querySelector('article');
     if ( resultsContainer ) {
         resultsContainer.innerHTML = '';
         resultsContainer.classList.remove('results-container--searching');
     }
-    article.className = '';
+    document.body.classList.remove( 'body--with-search-enabled' );
 }
 
 function toWord( match ) {
@@ -118,12 +117,11 @@ function setupSearch(form) {
         }
     } );
     document.querySelector('form input').addEventListener( 'input', function ( ev ) {
-        var article = document.querySelector('article');
         var val = this.value;
         if ( !val ) {
             resetSearch();
         } else {
-            article.className = 'article--with-search-enabled';
+            document.body.classList.add( 'body--with-search-enabled' );
             autocomplete( val, function ( matches ) {
                 resultsContainer.innerHTML = '';
                 resultsContainer.classList.add('results-container--searching');
