@@ -81,6 +81,24 @@ function resetSearch() {
     article.className = '';
 }
 
+function toWord( match ) {
+    match = match.map( function ( component ) {
+        return component.trim();
+    } );
+    var word = { character: match[1], pinyin: [], definitions: [] };
+    var defIndex = match.slice(2).findIndex( function ( word ) {
+        return word.indexOf( '.' ) > -1;
+    } );
+    if ( defIndex === -1 ) {
+        defIndex = match.length - 1;
+    } else {
+        defIndex += 2;
+    }
+    word.pinyin = match.slice( 2, defIndex );
+    word.definitions = match.slice( defIndex );
+    return word;
+}
+
 // Add search event listener
 function setupSearch(form) {
     var resultsContainer = document.createElement( 'div' );
@@ -134,10 +152,11 @@ function setupSearch(form) {
                     var stroke = key.split('.')[0];
                     var item = document.createElement( 'li' );
                     var link = document.createElement( 'a' );
+                    var word = toWord(match);
                     link.className = "link--stroke-" + stroke;
                     link.setAttribute( 'href', key.replace( '.', '-' ) + '.html');
-                    link.textContent = key + ' ' + match[1] + ' ' + match[2];
-                    match.slice(3).forEach( function ( text ) {
+                    link.textContent = key + ' ' + word.character + ' ' + word.pinyin.join( ' · ' );
+                    word.definitions.forEach( function ( text ) {
                         var def = document.createElement( 'span' );
                         def.innerText = text;
                         link.appendChild( def );
