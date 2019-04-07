@@ -222,7 +222,7 @@ ${vocabEntry.note}`,
             template.render( {
                 articlehtml: paypalForm,
                 bodyClasses: 'body--entry',
-                title: `${char} (${pinyin})`,
+                title: traditional ? `${char} (${traditional}) (${pinyin})` : `${char} (${pinyin})`,
                 isVocabPage: true,
                 source: vocabEntry.source,
                 ref,
