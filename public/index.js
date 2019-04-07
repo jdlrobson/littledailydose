@@ -205,9 +205,19 @@ function setupLiterals() {
         }
     } );
 }
-setupLiterals();
-
+function setupCompactTables() {
+    var tables = document.querySelectorAll('table');
+    Array.from( tables ).forEach(function ( table ) {
+        if ( table.querySelectorAll( 'th' ).length === 2 ) {
+            table.classList.add( 'table--compact' );
+        }
+    } );
+}
 var searchForm = document.querySelector('form');
 if ( searchForm ) {
     setupSearch(searchForm);
 }
+
+// copy to server side html generation (someday)
+setupLiterals();
+setupCompactTables();
