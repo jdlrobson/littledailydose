@@ -20,54 +20,92 @@ const references = vocabIndex;
 
 const charToPinyin = {};
 
-const markdownToObj = (text, ref) => {
-    const obj = {
-        source: 'wiki',
-        definitions: []
-    };
-    let isParsingPersonalNote = false;
+const parseDifficulty = ( line ) => {
+    const m = line.match(/Usage: (.+)/);
+    return m[1].length;
+};
+
+const parseHeadingLine = ( line ) => {
+    const obj = {};
+    const headingText = line.match(/# (.*)/ );
+    let pinyinPlusReference;
+    if ( headingText ) {
+        const m = headingText[1].split( ' ' );
+        if ( m[1].indexOf( '(' ) > -1) {
+            // traditional
+            obj.traditional = m[1].replace(/[\(\)]/g, '');
+            pinyinPlusReference = m.slice(2).join(' ').split(/[–-]/);
+        } else {
+            pinyinPlusReference = m.slice(1).join(' ').split(/[–-]/);
+        }
+        obj.char = m[0];
+        obj.pinyin = pinyinPlusReference[0].split('·');
+        obj.charReference = pinyinPlusReference.slice(1).join('-');
+    }
+    return obj;
+};
+
+const parseDefinitionsFromLines = ( lines ) => {
+    const obj = { definitions: [] };
     let personalNote = '';
-    text.split( '\n' ).forEach((line, i) => {
-        if ( i === 0 ) {
-            const m = line.match(/Usage: (.+)/);
-            obj.difficulty = m[1].length;
-        } else if ( i === 1 ) {
-            const headingText = line.match(/# (.*)/ );
-            let pinyinPlusReference;
-            if ( headingText ) {
-                const m = headingText[1].split( ' ' );
-                if ( m[1].indexOf( '(' ) > -1) {
-                    // traditional
-                    obj.traditional = m[1].replace(/[\(\)]/g, '');
-                    pinyinPlusReference = m.slice(2).join(' ').split(/[–-]/);
-                } else {
-                    pinyinPlusReference = m.slice(1).join(' ').split(/[–-]/);
-                }
-                obj.char = m[0];
-                obj.pinyin = pinyinPlusReference[0].split('·');
-                obj.charReference = pinyinPlusReference.slice(1).join('-');
+    let isParsingPersonalNote = false;
+    lines.forEach((line, i) => {
+        const m = line.match(/\#+ (.*)/);
+        const heading = m && m[1];
+        if ( heading ) {
+            isParsingPersonalNote = line.indexOf( '### ' ) > -1;
+            if ( !isParsingPersonalNote ) {
+                obj.definitions.push( { heading, text: '' } );
+            } else {
+                personalNote += line + '\n';
             }
         } else {
-            const m = line.match(/\#+ (.*)/);
-            const heading = m && m[1];
-            if ( heading ) {
-                isParsingPersonalNote = line.indexOf( '### ' ) > -1;
-                if ( !isParsingPersonalNote ) {
-                    obj.definitions.push( { heading, text: '' } );
-                } else {
-                    personalNote += line + '\n';
-                }
+            if ( !line && obj.definitions.length === 0 ) {
+                // ignore
+            } else if ( isParsingPersonalNote ) {
+                personalNote += line + '\n';
             } else {
-                if ( isParsingPersonalNote ) {
-                    personalNote += line + '\n';
-                } else {
-                    obj.definitions[obj.definitions.length - 1].text += line + '\n';
-                }
+                obj.definitions[obj.definitions.length - 1].text += line + '\n';
             }
         }
-    });
+    } );
     obj.note = personalNote;
     return obj;
+};
+
+const parseVocabEntry = ( lines ) => {
+    const obj = {
+        source: 'wiki',
+        entries: [],
+        difficulty: parseDifficulty( lines[0] )
+    };
+    // the rest of the lines are definitions
+    lines = lines.slice(1);
+
+    // starting at the last line, work back...
+    let lastIndex = 0;
+    lines.reverse();
+    lines.forEach( ( line, i ) => {
+        // until you find a # signalling the first entry
+        if ( line.indexOf( '# ' ) === 0 ) {
+            const entry = parseHeadingLine( line );
+            Object.assign( entry,
+                parseDefinitionsFromLines(
+                    lines.slice( lastIndex, i ).reverse()
+                )
+            );
+            obj.entries.push( entry );
+            lastIndex = i + 1;
+        }
+    } );
+    // reverse the entries list since we parsed it backwards
+    obj.entries.reverse();
+    return obj;
+};
+
+const markdownToObj = ( text ) => {
+    const lines = text.split( '\n' );
+    return parseVocabEntry( lines );
 }
 const getMarkdown = (ref) => {
     let file;
@@ -76,7 +114,7 @@ const getMarkdown = (ref) => {
     } catch ( e ) {
         return slug[ref] ? Object.assign( slug[ref], { source: 'slug' } ) : false;
     }
-    return markdownToObj(file.toString(), ref);
+    return markdownToObj(file.toString());
 };
 
 const defToMarkdown = ( { heading, text } ) =>
@@ -116,26 +154,24 @@ function innerHTML( htmlSingleNode ) {
     return htmlSingleNode.replace('<p>','').replace('</p>', ''); // hack
 }
 
-// generate pages
-function generatePage( ref ) {
-    const vocabEntry = getMarkdown( ref );
-    if ( vocabEntry ) {
-        const usage = Array.from(Array(vocabEntry.difficulty).keys()).fill('+').join('');
-        const char = vocabEntry.char;
-        const traditional = vocabEntry.traditional;
-        const pinyin = vocabEntry.pinyin;
-        // record this for later lookup
-        charToPinyin[char] = pinyin;
-        const definitions = vocabEntry.definitions.map( ( { heading, text } ) => {
-            const headingRef = heading.split( /[一–]/ );
+function wikify( ref, vocabEntries ) {
+    vocabEntries.entries = vocabEntries.entries.map( ( vocabEntry ) => {
+        vocabEntry.definitions = vocabEntry.definitions.map( ( { heading, text } ) => {
+            const splitRegEx = /[一–]/g;
+            const headingRef = heading.split( splitRegEx );
             const reference = headingRef[1] && innerHTML( marked(
                 markReferenceLinks(
-                    headingRef[1].replace(/-一/g, '').trim()
+                    headingRef[1].replace(splitRegEx, '').trim()
                 )
             ) );
+            // check if wiki heading is in an unexpected format
+            if ( headingRef[0] && headingRef[0].indexOf( '.html' ) > -1 ) {
+                throw new Error(`Problem with definition heading in ${ref}: ${heading}`);
+            }
             checkBrokenLinks(ref, text);
+            const newHeading = headingRef[0];
             return {
-                heading: headingRef[0],
+                heading: newHeading,
                 reference,
                 anchor: heading.replace( /	/g, '' )
                     .replace( /  /g, ' ' )
@@ -145,7 +181,27 @@ function generatePage( ref ) {
                 text: marked(text)
             };
         });
+        vocabEntry.personalNote = marked(vocabEntry.note);
         checkBrokenLinks(ref, vocabEntry.note);
+        return vocabEntry;
+    } );
+    return vocabEntries;
+}
+// generate pages
+function generatePage( ref ) {
+    const vocabEntries = wikify( ref, getMarkdown( ref ) );
+    const vocabEntry = vocabEntries && vocabEntries.entries[0];
+    const definitions = vocabEntries.entries
+        .map( ( entry ) => entry.definitions ).reduce(( prev = [], currentValue ) => {
+            return prev.concat( currentValue );
+        } );
+    if ( vocabEntry ) {
+        const usage = Array.from(Array(vocabEntries.difficulty).keys()).fill('+').join('');
+        const char = vocabEntry.char;
+        const traditional = vocabEntry.traditional;
+        const pinyin = vocabEntry.pinyin;
+        // record this for later lookup
+        charToPinyin[char] = pinyin;
         index.push(
             [ ref, char ].concat( pinyin )
                 .concat( definitions.map( ( { heading } ) => heading ) )
@@ -173,13 +229,7 @@ ${vocabEntry.note}`,
                 strokes: parseInt( ref.split( '.' )[0], 10 ),
                 charReference: vocabEntry.charReference ?
                     innerHTML( marked(vocabEntry.charReference) ) : '',
-                definitions,
-                // requires formatting!
-                personalNote: marked(vocabEntry.note),
-                char,
-                traditional,
-                pinyin,
-                // Not working (parsing incorrectly)
+                entries: vocabEntries.entries,
                 difficulty: usage,
                 difficultyLength: usage.length
             } ),

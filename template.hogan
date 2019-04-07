@@ -25,6 +25,7 @@
                 entry__info__difficulty--{{difficultyLength}}">{{difficulty}}</span></span>
         </div>
         {{/ref}}
+        {{#entries}}
         {{^noHeading}}
         <h1>
             <span class="entry__simplified_char">{{char}}</span>
@@ -47,6 +48,7 @@
            {{{personalNote}}}
         </section>
         {{/personalNote}}
+        {{/entries}}
         {{{articlehtml}}}
         </article>
         <footer>
