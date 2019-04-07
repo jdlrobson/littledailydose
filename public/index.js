@@ -84,7 +84,8 @@ function toWord( match ) {
     match = match.map( function ( component ) {
         return component ? component.trim() : component;
     } );
-    var word = { key: match[1],
+    var keySplit = match[1].split( '#' );
+    var word = { key: keySplit[0], anchor: keySplit[1],
         character: match[2], pinyin: [], definitions: [] };
     var defIndex = match.slice(3).findIndex( function ( word ) {
         return word.indexOf( '.' ) > -1;
@@ -157,7 +158,7 @@ function setupSearch(form) {
                     var key = word.key;
                     var stroke = key.split('.')[0];
                     link.className = "link--stroke-" + stroke;
-                    link.setAttribute( 'href', key.replace( '.', '-' ) + '.html');
+                    link.setAttribute( 'href', key.replace( '.', '-' ) + '.html#' + word.anchor);
                     var textContent = key + ' ' + word.character;
                     if ( word.traditional ) {
                         textContent += ' (' + word.traditional + ')';
@@ -170,6 +171,7 @@ function setupSearch(form) {
                         link.appendChild( def );
                     } );
                     item.appendChild( link );
+                    link.addEventListener( 'click', resetSearch );
                     results.appendChild( item );
                 } );
                 resultsContainer.appendChild( results );

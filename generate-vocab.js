@@ -155,7 +155,7 @@ function innerHTML( htmlSingleNode ) {
 }
 
 function wikify( ref, vocabEntries ) {
-    vocabEntries.entries = vocabEntries.entries.map( ( vocabEntry ) => {
+    vocabEntries.entries = vocabEntries.entries.map( ( vocabEntry, i ) => {
         vocabEntry.definitions = vocabEntry.definitions.map( ( { heading, text } ) => {
             const splitRegEx = /[一–]/g;
             const headingRef = heading.split( splitRegEx );
@@ -181,6 +181,7 @@ function wikify( ref, vocabEntries ) {
                 text: marked(text)
             };
         });
+        vocabEntry.anchor = 'definition_' + i;
         vocabEntry.personalNote = marked(vocabEntry.note);
         checkBrokenLinks(ref, vocabEntry.note);
         return vocabEntry;
@@ -189,9 +190,9 @@ function wikify( ref, vocabEntries ) {
 }
 
 function populateSearchIndex(ref, vocabEntries) {
-    vocabEntries.entries.forEach((entry) => {
+    vocabEntries.entries.forEach((entry, i) => {
         index.push(
-            [ entry.traditional, ref, entry.char  ].concat( entry.pinyin )
+            [ entry.traditional, ref + '#' + entry.anchor, entry.char  ].concat( entry.pinyin )
                 .concat( entry.definitions.map( ( { heading } ) => heading ) )
         );
     });

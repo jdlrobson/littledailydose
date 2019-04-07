@@ -27,7 +27,7 @@
         {{/ref}}
         {{#entries}}
         {{^noHeading}}
-        <h1>
+        <h1 id="{{anchor}}">
             <span class="entry__simplified_char">{{char}}</span>
             {{#traditional}}<span class="entry__traditional_char">{{traditional}}</span> {{/traditional}}
             {{#pinyin}}<span class="entry__pinyin">{{.}}</span>{{/pinyin}}
