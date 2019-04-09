@@ -10,10 +10,10 @@
         <script type="text/javascript">document.body.className += ' body--js-enabled';</script>
         {{^noHeader}}
         <header>
-            <a href="index.html">
+            <a href="/">
                 <img src="Header.png" class="header__logo" alt="A little daily dose of Chinese">
             </a>
-            <form method="get" action="index.html" class="header__form">
+            <form method="get" action="/" class="header__form">
                 <input class="header__form__search-input" type="text" placeholder="Search index / words">
             </form>
         </header>
@@ -52,11 +52,11 @@
         {{{articlehtml}}}
         </article>
         <footer>
-            <a href="about.html"
+            <a href="/about"
                  {{#isStoryPage}}class="footer__link--active"{{/isStoryPage}}>About</a>
-            <a href="index.html"
+            <a href="/"
                 {{#isVocabPage}}class="footer__link--active"{{/isVocabPage}}>Learn</a>
-            <a href="contact.html"
+            <a href="/contact"
                 {{#isContactUsPage}}class="footer__link--active"{{/isContactUsPage}}>Contact</a>
         </footer>
     </body>
