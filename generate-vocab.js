@@ -1,6 +1,6 @@
 const hogan = require( 'hogan.js' );
 const fs = require( 'fs' );
-const { markReferenceLinks, vocabIndex, lookupKey } = require( './parse-vocab-text' );
+const { vocabIndex, lookupKey } = require( './parse-vocab-text' );
 const template = hogan.compile(
     fs.readFileSync( 'template.hogan' ).toString()
 );
@@ -160,15 +160,14 @@ function wikify( ref, vocabEntries ) {
             const splitRegEx = /[一–]/g;
             const headingRef = heading.split( splitRegEx );
             const reference = headingRef[1] && innerHTML( marked(
-                markReferenceLinks(
-                    headingRef[1].replace(splitRegEx, '').trim()
-                )
+                headingRef[1].replace(splitRegEx, '').trim()
             ) );
             // check if wiki heading is in an unexpected format
             if ( headingRef[0] && headingRef[0].indexOf( '.html' ) > -1 ) {
                 throw new Error(`Problem with definition heading in ${ref}: ${heading}`);
             }
             checkBrokenLinks(ref, text);
+            checkBrokenLinks(ref, reference);
             const newHeading = headingRef[0];
             return {
                 heading: newHeading,
