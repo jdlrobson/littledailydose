@@ -270,8 +270,10 @@ ${marked(sortedKeys.filter(filterByStroke( stroke )).map(keyToLink).join( '\n' )
             articlehtml: paypalForm,
             title: 'Table of Vocabularies',
             strokes: 'toc',
-            definitions: [],
-            personalNote: `<div class="toc">
+            entries: [
+                {
+                    definitions: [],
+                    personalNote: `<div class="toc">
 ${strokesToc('1')}
 ${strokesToc('2')}
 ${strokesToc('3')}
@@ -285,9 +287,10 @@ ${strokesToc('10')}
 ${strokesToc('11')}
 ${strokesToc('12')}
 </div>`
-            } ),
-            { encoding: 'utf8' }
-        );
+                }
+            ]
+        }, { encoding: 'utf8' } )
+    );
 }
 function generateIndex() {
         // make index.json
@@ -308,8 +311,12 @@ function generateContactUs() {
             isContactUsPage: true,
             title: 'Contact us',
             strokes: 'contact',
-            definitions: [],
-            personalNote: marked('# Contact us\n' + fs.readFileSync(`littledailydose.wiki/Contact-us.md`).toString())
+            entries: [
+                {
+                    definitions: [],
+                    personalNote: marked('# Contact us\n' + fs.readFileSync(`littledailydose.wiki/Contact-us.md`).toString())
+                }
+            ]
         } ),
         {
             encoding: 'utf8'
