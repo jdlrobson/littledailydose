@@ -325,7 +325,7 @@ function generateContactUs() {
 
 function generateBookPage() {
     const bookText = fs.readFileSync(`littledailydose.wiki/Book.md`).toString();
-    const articlehtml = `<img class="bookcover" width="500" height="421" src="Header_1.jpg" alt="A Little Daily Dose" />
+    const articlehtml = `<img class="bookcover" width="500" height="421" src="LittleDailyDoseCoverSmall.jpg" alt="A Little Daily Dose" />
     <section class="book-buy">
         ${marked( bookText )}
         ${paypalForm}
