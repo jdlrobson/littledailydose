@@ -8,7 +8,7 @@ const slug = JSON.parse( fs.readFileSync( 'slug.json' ) );
 const marked = require('marked');
 
 const paypalForm = `<form class="paypal-form" action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
-<h2>Pre-order</h2>
+<h2>intl. shipping</h2>
 <strong>USD: $28.80</strong>
 <input type="hidden" name="cmd" value="_s-xclick">
 <input type="hidden" name="hosted_button_id" value="ADGZNJEJ9GN4C">
