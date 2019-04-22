@@ -326,6 +326,8 @@ function generateContactUs() {
 function generateBookPage() {
     const bookText = fs.readFileSync(`littledailydose.wiki/Book.md`).toString();
     const articlehtml = `<img class="bookcover" width="500" height="421" src="LittleDailyDoseCoverSmall.jpg" alt="A Little Daily Dose" />
+    <a href="https://enter.hermesawards.com/winners/"><img class="award" src="Award.png" alt="Hermes Platinum Award Winner"
+        style="width: 160px; margin: 30px auto -25px; display: block;"></a>
     <section class="book-buy">
         ${marked( bookText )}
         ${paypalForm}
