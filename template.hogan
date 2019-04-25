@@ -5,6 +5,7 @@
         <title>A Little Daily Dose of Chinese{{#title}} - {{/title}}{{title}}</title>
         <meta name="viewport" content="initial-scale=1.0, user-scalable=yes, minimum-scale=0.25, maximum-scale=5.0, width=device-width"/>
         <link rel="stylesheet" href="index.css">
+        <link rel="manifest" href="manifest.webmanifest">
     </head>
     <body class="body--stroke-{{strokes}} {{bodyClasses}}">
         <script type="text/javascript">document.body.className += ' body--js-enabled';</script>

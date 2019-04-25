@@ -221,3 +221,7 @@ if ( searchForm ) {
 // copy to server side html generation (someday)
 setupLiterals();
 setupCompactTables();
+
+if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('service-worker.js');
+}
