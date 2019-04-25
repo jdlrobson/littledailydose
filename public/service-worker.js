@@ -7,6 +7,8 @@ const RUNTIME = 'runtime';
 // A list of local resources we always want to be cached.
 const PRECACHE_URLS = [
   'index.html',
+  'arrow.png',
+  'arrow-fill.png',
   './', // Alias
   'index.css',
   'Header.png',
@@ -59,4 +61,3 @@ self.addEventListener('activate', event => {
       );
     }
   });
-  
