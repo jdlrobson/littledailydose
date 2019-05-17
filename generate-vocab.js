@@ -326,7 +326,10 @@ function generateContactUs() {
 function generateBookPage() {
     const bookText = fs.readFileSync(`littledailydose.wiki/Book.md`).toString();
     const articlehtml = `<img class="bookcover" width="500" height="421" src="LittleDailyDoseCoverSmall.jpg" alt="A Little Daily Dose" />
+    <img src="little-daily-dose-flip-through.gif" alt="preview of a little daily dose"
+        class="bookcover bookcover--animation" title="A flip through of a little daily dose">
     <a href="https://enter.hermesawards.com/winners/"><img class="award" src="Award.png" alt="Hermes Platinum Award Winner"
+        title="A little daily dose won the Hermes platinum award"
         style="width: 130px; margin: 30px auto 6px; display: block;"></a>
     <section class="book-buy">
         ${marked( bookText )}
