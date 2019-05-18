@@ -36,7 +36,7 @@ self.addEventListener('activate', event => {
       }).then(() => self.clients.claim())
     );
   });
-  
+ 
   // The fetch handler serves responses for same-origin resources from a cache.
   // If no response is found, it populates the runtime cache with the response
   // from the network before returning it to the page.
@@ -45,11 +45,9 @@ self.addEventListener('activate', event => {
     if (event.request.url.startsWith(self.location.origin)) {
       event.respondWith(
         caches.match(event.request).then(cachedResponse => {
-          if (cachedResponse) {
-            return cachedResponse;
-          }
-  
-          return caches.open(RUNTIME).then(cache => {
+
+          // get recent version for next time (or this time if first go)
+          cachedNetwork = caches.open(RUNTIME).then(cache => {
             return fetch(event.request).then(response => {
               // Put a copy of the response in the runtime cache.
               return cache.put(event.request, response.clone()).then(() => {
@@ -57,6 +55,9 @@ self.addEventListener('activate', event => {
               });
             });
           });
+
+            return cachedResponse || cachedNetwork;
+          }
         })
       );
     }
