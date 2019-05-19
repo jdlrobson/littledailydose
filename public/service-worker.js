@@ -57,7 +57,6 @@ self.addEventListener('activate', event => {
           });
 
             return cachedResponse || cachedNetwork;
-          }
         })
       );
     }
