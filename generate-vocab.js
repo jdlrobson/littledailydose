@@ -330,8 +330,7 @@ function generateBookPage() {
         class="bookcover bookcover--animation" title="A flip through of a little daily dose">
     <section class="book-buy">
         ${marked( bookText )}
-        ${paypalForm}
-    </section>`
+    </section>${paypalForm}`
     // make index.html
     fs.writeFile(
         `public/about.html`,
