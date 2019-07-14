@@ -53,9 +53,9 @@
         {{{articlehtml}}}
         </article>
         <footer>
-            <a href="/about"
-                 {{#isStoryPage}}class="footer__link--active"{{/isStoryPage}}>About</a>
             <a href="/"
+                 {{#isStoryPage}}class="footer__link--active"{{/isStoryPage}}>About</a>
+            <a href="/toc"
                 {{#isVocabPage}}class="footer__link--active"{{/isVocabPage}}>Learn</a>
             <a href="/contact"
                 {{#isContactUsPage}}class="footer__link--active"{{/isContactUsPage}}>Contact</a>

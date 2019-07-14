@@ -6,7 +6,7 @@ const template = hogan.compile(
 );
 const slug = JSON.parse( fs.readFileSync( 'slug.json' ) );
 const marked = require('marked');
-
+const saveCallback = () => {};
 const paypalForm = `<form class="paypal-form" action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
 <h2>intl. shipping</h2>
 <strong>USD: $28.80</strong>
@@ -263,7 +263,7 @@ ${marked(sortedKeys.filter(filterByStroke( stroke )).map(keyToLink).join( '\n' )
     };
 
     fs.writeFile(
-        `public/index.html`,
+        `public/toc.html`,
         template.render( {
             isVocabPage: true,
             articlehtml: paypalForm,
@@ -288,7 +288,8 @@ ${strokesToc('12')}
 </div>`
                 }
             ]
-        }, { encoding: 'utf8' } )
+        }, { encoding: 'utf8' } ),
+        saveCallback
     );
 }
 function generateIndex() {
@@ -298,9 +299,10 @@ function generateIndex() {
             JSON.stringify(index ),
             {
                 encoding: 'utf8'
-            }
+            }, saveCallback
         );
 }
+
 function generateContactUs() {
     // make index.json
     fs.writeFile(
@@ -319,7 +321,8 @@ function generateContactUs() {
         } ),
         {
             encoding: 'utf8'
-        }
+        },
+        saveCallback
     );
 }
 
@@ -333,7 +336,7 @@ function generateBookPage() {
     </section>${paypalForm}`
     // make index.html
     fs.writeFile(
-        `public/about.html`,
+        `public/index.html`,
         template.render( {
             articlehtml,
             isStoryPage: true,
@@ -344,7 +347,7 @@ function generateBookPage() {
         } ),
         {
             encoding: 'utf8'
-        }
+        }, saveCallback
     );
 };
 
