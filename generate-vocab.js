@@ -315,7 +315,7 @@ function generateContactUs() {
             entries: [
                 {
                     definitions: [],
-                    personalNote: marked('# Contact us\n' + fs.readFileSync(`littledailydose.wiki/Contact-us.md`).toString())
+                    personalNote: marked('# Contact us\n' + fs.readFileSync(`littledailydose.wiki/Contact.md`).toString())
                 }
             ]
         } ),
