@@ -334,8 +334,9 @@ function generateBookPage() {
     <section class="book-buy">
         ${marked( bookText )}
     </section>
+    ${paypalForm}
     <img class="bookcover" width="500" height="421" src="LittleDailyDoseCoverSmall.jpg" alt="A Little Daily Dose" />
-    ${paypalForm}`
+`;
     // make index.html
     fs.writeFile(
         `public/index.html`,
