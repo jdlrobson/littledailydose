@@ -328,10 +328,13 @@ function generateContactUs() {
 
 function generateBookPage() {
     const bookText = fs.readFileSync(`littledailydose.wiki/Book.md`).toString();
+    const intro = fs.readFileSync(`littledailydose.wiki/Intro.md`).toString();
     const articlehtml = `<img class="bookcover" width="500" height="336" src="AwardBook.jpg" alt="A Little Daily Dose" />
     <img src="little-daily-dose-flip-through.gif" alt="preview of a little daily dose"
         class="bookcover bookcover--animation" title="A flip through of a little daily dose">
     <section class="book-buy">
+        ${marked( intro )}
+        <img class="book-buy__gif" src="eel-flip.gif" />
         ${marked( bookText )}
     </section>
     ${paypalForm}

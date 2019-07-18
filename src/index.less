@@ -409,9 +409,14 @@ article {
 }
 
 .book-buy img {
-    height: 130px;
+    height: auto;
+    width: 100%;
     margin: 30px auto 6px;
     display: block;
+}
+
+.book-buy__gif {
+    margin: 0 !important;
 }
 
 @media all and ( min-width: 400px ) {
@@ -502,8 +507,13 @@ article {
 }
 
 .book-buy {
-    padding: 25px;
     text-align: center;
+    p {
+        padding: 25px;
+    }
+    p + p {
+        margin-top: 0;
+    }
 }
 
 .body--stroke-buy {
