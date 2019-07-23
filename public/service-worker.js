@@ -45,20 +45,20 @@ self.addEventListener('activate', event => {
     if (event.request.url.startsWith(self.location.origin)) {
       event.respondWith(
         caches.match(event.request).then(cachedResponse => {
-
+          var cachedNetwork = caches.open(RUNTIME);
           // get recent version for next time after delay (or this time if first go)
           setTimeout( function () {
-          cachedNetwork = caches.open(RUNTIME).then(cache => {
-            return fetch(event.request).then(response => {
-              // Put a copy of the response in the runtime cache.
-              return cache.put(event.request, response.clone()).then(() => {
-                return response;
+            cachedNetwork.then(cache => {
+              return fetch(event.request).then(response => {
+                // Put a copy of the response in the runtime cache.
+                return cache.put(event.request, response.clone()).then(() => {
+                  return response;
+                });
               });
             });
-          });
           }, 5000);
 
-            return cachedResponse || cachedNetwork;
+          return cachedResponse || cachedNetwork;
         })
       );
     }
