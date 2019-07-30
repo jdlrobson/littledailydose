@@ -336,7 +336,8 @@ function generateBookPage() {
         class="bookcover bookcover--animation" title="A flip through of a little daily dose">
     <section class="book-buy">
         ${marked( intro )}
-        <img class="book-buy__gif" src="eel-flip.gif" />
+        <img class="bookcover" src="app-ux.jpg" alt="Screenshots of the app on Android and iPhone" />
+        <img class="book-buy__gif" src="eel-flip.gif" alt="Animated gif showing how the app can be used alongside the book" />
         ${marked( bookText )}
     </section>
     ${paypalForm}
