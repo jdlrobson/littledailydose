@@ -208,8 +208,21 @@ p {
 p + p {
     margin-top: 10px;
 }
+@media all and (max-width: 500px) {
+    table {
+        display: block;
+        overflow: scroll;
+    }
+    tbody {
+        min-width: 600px;
+    }
+    td {
+        padding: 20px !important;
+    }
+}
 table {
-    font-size: 0.7em;
+    margin: 20px 0;
+    font-size: 1em;
     width: 100%;
     border-spacing: unset;
     border-collapse: collapse;
