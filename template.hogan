@@ -52,6 +52,7 @@
         {{/entries}}
         {{{articlehtml}}}
         </article>
+        {{{prefooterhtml}}}
         <footer>
             <a href="/"
                  {{#isStoryPage}}class="footer__link--active"{{/isStoryPage}}>About</a>

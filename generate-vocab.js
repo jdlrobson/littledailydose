@@ -312,10 +312,12 @@ function generateContactUs() {
             isContactUsPage: true,
             title: 'Contact us',
             strokes: 'contact',
+            prefooterhtml: `<img src="wip.jpg" class="bookcover"
+alt="A Little Daily Dose is an ongoing project - photo shows the worktable with our print outs and notes">`,
             entries: [
                 {
                     definitions: [],
-                    personalNote: marked('# Contact us\n' + fs.readFileSync(`littledailydose.wiki/Contact.md`).toString())
+                    personalNote: marked('# Contact us\n' + fs.readFileSync(`littledailydose.wiki/Contact.md`).toString()),
                 }
             ]
         } ),
