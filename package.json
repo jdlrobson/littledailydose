@@ -8,7 +8,8 @@
     "index--js.css": "lessc src/index--js.less --clean-css='--s1 --advanced --compatibility=ie8' > public/index--js.css",
     "index.css": "lessc src/index.less --clean-css='--s1 --advanced --compatibility=ie8' > public/index.css",
     "css": "npm run index.css && npm run index--js.css",
-    "start": "node generate-vocab.js && npm run css"
+    "wiki": " git submodule foreach git pull origin master",
+    "start": "npm run wiki && node generate-vocab.js && npm run css"
   },
   "repository": {
     "type": "git",
