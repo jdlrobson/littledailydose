@@ -1,3 +1,4 @@
+const PAYPAL_BUTTON_ENABLED = false;
 const hogan = require( 'hogan.js' );
 const fs = require( 'fs' );
 const { vocabIndex, lookupKey } = require( './parse-vocab-text' );
@@ -7,14 +8,14 @@ const template = hogan.compile(
 const slug = JSON.parse( fs.readFileSync( 'slug.json' ) );
 const marked = require('marked');
 const saveCallback = () => {};
-const paypalForm = `<form class="paypal-form" action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+const paypalForm = PAYPAL_BUTTON_ENABLED ? `<form class="paypal-form" action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
 <h2>intl. shipping</h2>
 <strong>USD: $28.80</strong>
 <input type="hidden" name="cmd" value="_s-xclick">
 <input type="hidden" name="hosted_button_id" value="ADGZNJEJ9GN4C">
 <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
 <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
-</form>`;
+</form>` : '';
 
 const references = vocabIndex;
 
