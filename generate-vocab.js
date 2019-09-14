@@ -1,4 +1,4 @@
-const PAYPAL_BUTTON_ENABLED = false;
+const PAYPAL_BUTTON_ENABLED = true;
 const hogan = require( 'hogan.js' );
 const fs = require( 'fs' );
 const { vocabIndex, lookupKey } = require( './parse-vocab-text' );
