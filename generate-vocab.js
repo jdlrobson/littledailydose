@@ -216,13 +216,16 @@ function generatePage( ref ) {
         // record this for later lookup
         charToPinyin[char] = pinyin;
         populateSearchIndex(ref, vocabEntries);
+        const title = traditional ? `${char} (${traditional}) (${pinyin})` : `${char} (${pinyin})`;
+
         fs.writeFile(
             `public/${filename}`,
             template.render( Object.assign( {}, ogmetatags, {
+                ogtitle: `A Little Daily Dose: ${title}`,
                 ogurl: `https://littledailydose.com/${filename}`,
                 articlehtml: paypalForm,
                 bodyClasses: 'body--entry',
-                title: traditional ? `${char} (${traditional}) (${pinyin})` : `${char} (${pinyin})`,
+                title,
                 isVocabPage: true,
                 source: vocabEntry.source,
                 ref,
