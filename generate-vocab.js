@@ -18,6 +18,11 @@ const paypalForm = PAYPAL_BUTTON_ENABLED ? `<form class="paypal-form" action="ht
 </form>` : '';
 
 const references = vocabIndex;
+const ogmetatags = {
+    ogtitle: 'A Little Daily Dose',
+    ogimage: 'https://littledailydose.com/eel-flip.gif',
+    ogdescription: 'A Little Daily Dose is a conventional book with an unconventional approach towards learning Chinese. Through four bilingual short stories, colour-coded Chinese characters are slowly introduced, in English, to the reader.',
+};
 
 const charToPinyin = {};
 
@@ -213,11 +218,8 @@ function generatePage( ref ) {
         populateSearchIndex(ref, vocabEntries);
         fs.writeFile(
             `public/${filename}`,
-            template.render( {
-                ogtitle: 'A Little Daily Dose',
+            template.render( Object.assign( {}, ogmetatags, {
                 ogurl: `https://littledailydose.com/${filename}`,
-                ogimage: 'https://littledailydose.com/eel-flip.gif',
-                ogdescription: 'A Little Daily Dose is a conventional book with an unconventional approach towards learning Chinese. Through four bilingual short stories, colour-coded Chinese characters are slowly introduced, in English, to the reader.',
                 articlehtml: paypalForm,
                 bodyClasses: 'body--entry',
                 title: traditional ? `${char} (${traditional}) (${pinyin})` : `${char} (${pinyin})`,
@@ -230,7 +232,7 @@ function generatePage( ref ) {
                 entries: vocabEntries.entries,
                 difficulty: usage,
                 difficultyLength: usage.length
-            } ),
+            } ) ),
             {
                 encoding: 'utf8'
             },
@@ -267,10 +269,12 @@ function generateToc() {
 ${marked(sortedKeys.filter(filterByStroke( stroke )).map(keyToLink).join( '\n' ))}
 </section>`;
     };
+    const filename = 'toc.html';
 
     fs.writeFile(
-        `public/toc.html`,
-        template.render( {
+        `public/${filename}`,
+        template.render( Object.assign( {}, ogmetatags, {
+            ogurl: `https://littledailydose.com/${filename}`,
             isVocabPage: true,
             articlehtml: paypalForm,
             title: 'Table of Vocabularies',
@@ -294,7 +298,7 @@ ${strokesToc('12')}
 </div>`
                 }
             ]
-        }, { encoding: 'utf8' } ),
+        } ), { encoding: 'utf8' } ),
         saveCallback
     );
 }
@@ -310,10 +314,11 @@ function generateIndex() {
 }
 
 function generateContactUs() {
-    // make index.json
+    const filename = 'contact.html';
     fs.writeFile(
-        `public/contact.html`,
-        template.render( {
+        `public/${filename}`,
+        template.render( Object.assign( {}, ogmetatags, {
+            ogurl: `https://littledailydose.com/${filename}`,
             articlehtml: paypalForm,
             isContactUsPage: true,
             title: 'Contact us',
@@ -326,7 +331,7 @@ alt="A Little Daily Dose is an ongoing project - photo shows the worktable with 
                     personalNote: marked('# Contact us\n' + fs.readFileSync(`littledailydose.wiki/Contact.md`).toString()),
                 }
             ]
-        } ),
+        } ) ),
         {
             encoding: 'utf8'
         },
@@ -352,14 +357,15 @@ function generateBookPage() {
     // make index.html
     fs.writeFile(
         `public/index.html`,
-        template.render( {
+        template.render( Object.assign( {}, ogmetatags, {
+            ogurl: `https://littledailydose.com/`,
             articlehtml,
             isStoryPage: true,
             title: 'Buy the book',
             strokes: 'buy',
             definitions: [],
             personalNote: false
-        } ),
+        } ) ),
         {
             encoding: 'utf8'
         }, saveCallback
