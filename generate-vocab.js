@@ -207,12 +207,17 @@ function generatePage( ref ) {
         const char = vocabEntry.char;
         const traditional = vocabEntry.traditional;
         const pinyin = vocabEntry.pinyin;
+        const filename = `${ref.replace('.', '-')}.html`;
         // record this for later lookup
         charToPinyin[char] = pinyin;
         populateSearchIndex(ref, vocabEntries);
         fs.writeFile(
-            `public/${ref.replace('.', '-')}.html`,
+            `public/${filename}`,
             template.render( {
+                ogtitle: 'A Little Daily Dose',
+                ogurl: `https://littledailydose.com/${filename}`,
+                ogimage: 'https://littledailydose.com/eel-flip.gif',
+                ogdescription: 'A Little Daily Dose is a conventional book with an unconventional approach towards learning Chinese. Through four bilingual short stories, colour-coded Chinese characters are slowly introduced, in English, to the reader.',
                 articlehtml: paypalForm,
                 bodyClasses: 'body--entry',
                 title: traditional ? `${char} (${traditional}) (${pinyin})` : `${char} (${pinyin})`,

@@ -4,6 +4,21 @@
         <meta charset="UTF-8">
         <title>A Little Daily Dose of Chinese{{#title}} - {{/title}}{{title}}</title>
         <meta name="viewport" content="initial-scale=1.0, user-scalable=yes, minimum-scale=0.25, maximum-scale=5.0, width=device-width"/>
+        <meta name="twitter:card" value="summary_large_image" />
+        <meta name="twitter:site" value="{{ogtitle}}" />
+        <meta name="og:site_name" content="{{ogtitle}}" />
+        <meta name="title" content="{{ogtitle}}" />
+        <meta name="description" content="{{ogdescription}}" />
+        <meta property="og:title" content="{{ogtitle}}" />
+        <meta property="og:url" content="{{ogurl}}" />
+        <meta property="og:type" content="article" />
+        <meta property="og:image" content="{{ogimage}}" />
+        <meta property="og:description" content="{{ogdescription}}" />
+        <meta name="twitter:creator" value="@jdlrobson" />
+        <meta name="twitter:url" value="{{ogurl}}" />
+        <meta name="twitter:title" value="{{ogtitle}}" />
+        <meta name="twitter:image:src" value="{{ogimage}}" />
+        <meta name="twitter:description" value="{{ogdescription}}" />
         <link rel="stylesheet" href="index.css">
         <link rel="manifest" href="manifest.webmanifest">
     </head>
