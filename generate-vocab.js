@@ -9,10 +9,15 @@ const slug = JSON.parse( fs.readFileSync( 'slug.json' ) );
 const marked = require('marked');
 const saveCallback = () => {};
 const paypalForm = PAYPAL_BUTTON_ENABLED ? `<form class="paypal-form" action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
-<h2>intl. shipping</h2>
-<strong>USD: $28.80</strong>
 <input type="hidden" name="cmd" value="_s-xclick">
-<input type="hidden" name="hosted_button_id" value="ADGZNJEJ9GN4C">
+<input type="hidden" name="hosted_button_id" value="QJNHYK2FJPLGL">
+<input type="hidden" name="on0" value="International Shipping">
+<h2>intl. shipping</h2>
+<select name="os0">
+	<option value="USA & Singapore">USA & Singapore $28.80 USD</option>
+	<option value="Everywhere Else">Everywhere Else $40.00 USD</option>
+</select>
+<input type="hidden" name="currency_code" value="USD">
 <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
 <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
 </form>` : '';
