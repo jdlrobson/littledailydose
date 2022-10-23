@@ -5,6 +5,7 @@ const { vocabIndex, lookupKey } = require( './parse-vocab-text' );
 const template = hogan.compile(
     fs.readFileSync( 'template.hogan' ).toString()
 );
+const domino = require( 'domino' );
 const slug = JSON.parse( fs.readFileSync( 'slug.json' ) );
 const marked = require('marked');
 const saveCallback = () => {};
@@ -30,6 +31,10 @@ const ogmetatags = {
 };
 
 const charToPinyin = {};
+
+const charToRadicals = {
+   // e.g. '人': [ '亻 Human Radical' ]
+};
 
 const parseDifficulty = ( line ) => {
     const m = line.match(/Usage: (.+)/);
@@ -255,15 +260,38 @@ function generatePage( ref ) {
     }
 }
 
+/**
+ * Loads toc text, parses it and populates the charToRadicals object.
+ */
+function populateCharToRadicals() {
+    const tocText = fs.readFileSync(`littledailydose.wiki/Home.md`).toString();
+    const domimpl = domino.createDOMImplementation();
+    const doc = domimpl.createHTMLDocument();
+    doc.body.innerHTML = marked(tocText);
+    console.log(doc.body.innerHTML);
+    Array.from( doc.querySelectorAll( 'ul > li' ) ).forEach((li) => {
+    const radicals = Array.from(li.querySelectorAll( 'span' ));
+        const radical = li.querySelector('a').textContent.split( ' ' )[ 1 ].trim();
+        charToRadicals[radical] = charToRadicals[radical] || [];
+        radicals.forEach(( sup ) => {
+            const val = sup.textContent;
+            charToRadicals[radical].push( val );
+        });
+    });
+}
+
 function generateToc() {
+    populateCharToRadicals();
     const sortedKeys = Object.keys(references).sort((a,b) => parseFloat(a) < parseFloat(b) ? -1 : 1);
     const keyToLink = (key) => {
         const char = references[key];
         const pinyin = charToPinyin[char];
+        const radicals = ( charToRadicals[char] || [] );
         if ( !pinyin ) {
             throw new Error( `problem in ${key}` );
         }
-        return `* [${key} ${char} ${pinyin.join('·')}](${key.replace('.', '-')}.html)`;
+        const radicalString = radicals.map((radical) => `<span>${radical}</span>`).join('');
+        return `* [${key} ${char} ${pinyin.join('·')} ${radicalString}](${key.replace('.', '-')}.html)`;
     };
     const filterByStroke = ( stroke ) => {
         return ( key ) => {
