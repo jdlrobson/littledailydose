@@ -301,15 +301,20 @@ section {
     line-height: 1.5;
 }
 
+.em--symbolic,
 .em--literal {
     color: #d0c8ba;
 }
 .definition ul li {
     margin-bottom: 10px;
 }
+
+.em--symbolic:before,
 .em--literal:before {
     content: '<';
 }
+
+.em--symbolic:after,
 .em--literal:after {
     content: '>';
 }

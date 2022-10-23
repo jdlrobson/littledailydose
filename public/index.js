@@ -203,6 +203,10 @@ function setupLiterals() {
         if ( em.textContent.indexOf( 'Literal.' ) > -1 ) {
             em.classList.add( 'em--literal');
         }
+
+        if ( em.textContent.indexOf( 'Symbolic.' ) > -1 ) {
+            em.classList.add( 'em--symbolic');
+        }
     } );
 }
 function setupCompactTables() {
