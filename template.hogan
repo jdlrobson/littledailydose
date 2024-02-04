@@ -21,6 +21,7 @@
         <meta name="twitter:description" value="{{ogdescription}}" />
         <link rel="stylesheet" href="index.css">
         <link rel="manifest" href="manifest.webmanifest">
+        <meta name="google-site-verification" content="mzjjfIIUZtRWhQwfd49STTtZLoyK0WiGkmMQG83ektw">
     </head>
     <body class="body--stroke-{{strokes}} {{bodyClasses}}">
         <script type="text/javascript">document.body.className += ' body--js-enabled';</script>
