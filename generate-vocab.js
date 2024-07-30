@@ -7,7 +7,7 @@ const template = hogan.compile(
 );
 const domino = require( 'domino' );
 const slug = JSON.parse( fs.readFileSync( 'slug.json' ) );
-const marked = require('marked');
+const { marked } = require('marked');
 const saveCallback = () => {};
 const paypalForm = PAYPAL_BUTTON_ENABLED ? `<form class="paypal-form" action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
 <input type="hidden" name="cmd" value="_s-xclick">
