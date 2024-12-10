@@ -27,6 +27,6 @@
     "less": "3.13.1",
     "less-plugin-clean-css": "1.5.1",
     "marked": "4.0.10",
-    "mocha": "10.2.0"
+    "mocha": "10.8.2"
   }
 }
