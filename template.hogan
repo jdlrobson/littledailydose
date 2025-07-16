@@ -2,7 +2,7 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8">
-        <title>A Little Daily Dose of Chinese{{#title}} - {{/title}}{{title}}</title>
+        <title>A Little Daily Dose: Discovering Chinese Characters Through Short Stories{{#title}} - {{/title}}{{title}}</title>
         <meta name="viewport" content="initial-scale=1.0, user-scalable=yes, minimum-scale=0.25, maximum-scale=5.0, width=device-width"/>
         <meta name="twitter:card" value="summary_large_image" />
         <meta name="twitter:site" value="{{ogtitle}}" />
