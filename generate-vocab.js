@@ -56,7 +56,7 @@ const parseHeadingLine = ( line ) => {
         }
         obj.char = m[0];
         obj.pinyin = pinyinPlusReference[0].split('·');
-        obj.charReference = pinyinPlusReference.slice(1).join('-');
+        obj.charReference = marked( pinyinPlusReference.slice(1).join('-') );
     }
     return obj;
 };
